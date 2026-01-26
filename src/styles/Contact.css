@@ -1,0 +1,444 @@
+.contact {
+  padding: 8rem 0;
+  background: #1a1a1a;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+}
+
+.contact__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.contact__header {
+  text-align: center;
+  margin-bottom: 6rem;
+}
+
+.contact__title {
+  font-size: 4.5rem;
+  font-weight: 200;
+  letter-spacing: -1px;
+  color: #fff;
+  margin: 0 0 1rem 0;
+}
+
+.contact__subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #999;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.contact__content {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.contact__card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3rem 2.5rem;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #fff, #666);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.contact__card:hover::before {
+  transform: scaleX(1);
+}
+
+.contact__card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-8px);
+}
+
+.contact__card-icon {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  margin: 0 auto 2rem;
+  transition: all 0.4s ease;
+}
+
+.contact__card-icon svg {
+  color: #fff;
+  transition: transform 0.4s ease;
+}
+
+.contact__card:hover .contact__card-icon {
+  background: #fff;
+  transform: scale(1.1);
+}
+
+.contact__card:hover .contact__card-icon svg {
+  color: #1a1a1a;
+  transform: rotate(360deg);
+}
+
+.contact__card-label {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+  letter-spacing: -0.3px;
+}
+
+.contact__card-info {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #aaa;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.contact__card-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #fff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  justify-content: center;
+  letter-spacing: 0.5px;
+}
+
+.contact__card-button:hover {
+  background: #fff;
+  color: #1a1a1a;
+  border-color: #fff;
+  gap: 1rem;
+}
+
+.contact__cta {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact__cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+  animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.contact__cta-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #fff;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+.contact__cta-text {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #999;
+  margin: 0 0 2.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.contact__cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #1a1a1a;
+  background: #fff;
+  border: none;
+  padding: 1.2rem 3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.contact__cta-button:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .contact {
+    padding: 6rem 0;
+  }
+  
+  .contact__container {
+    padding: 0 2rem;
+  }
+  
+  .contact__header {
+    margin-bottom: 5rem;
+  }
+  
+  .contact__title {
+    font-size: 3.5rem;
+  }
+  
+  .contact__subtitle {
+    font-size: 1rem;
+  }
+  
+  .contact__content {
+    gap: 5rem;
+  }
+  
+  .contact__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .contact__card {
+    padding: 2.5rem 2rem;
+  }
+  
+  .contact__card-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 1.8rem;
+  }
+  
+  .contact__card-icon svg {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .contact__card-label {
+    font-size: 1.2rem;
+  }
+  
+  .contact__card-info {
+    font-size: 0.95rem;
+  }
+  
+  .contact__cta {
+    padding: 3.5rem 2.5rem;
+  }
+  
+  .contact__cta-title {
+    font-size: 2.2rem;
+  }
+  
+  .contact__cta-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact {
+    padding: 5rem 0;
+  }
+  
+  .contact__container {
+    padding: 0 1.5rem;
+  }
+  
+  .contact__header {
+    margin-bottom: 4rem;
+  }
+  
+  .contact__title {
+    font-size: 2.8rem;
+  }
+  
+  .contact__subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .contact__content {
+    gap: 4rem;
+  }
+  
+  .contact__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .contact__card {
+    padding: 2.5rem 2rem;
+  }
+  
+  .contact__card-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .contact__card-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .contact__card-label {
+    font-size: 1.15rem;
+  }
+  
+  .contact__card-info {
+    font-size: 0.92rem;
+  }
+  
+  .contact__card-button {
+    font-size: 0.88rem;
+    padding: 0.75rem 1.3rem;
+  }
+  
+  .contact__cta {
+    padding: 3rem 2rem;
+  }
+  
+  .contact__cta-title {
+    font-size: 2rem;
+  }
+  
+  .contact__cta-text {
+    font-size: 0.95rem;
+  }
+  
+  .contact__cta-button {
+    font-size: 0.95rem;
+    padding: 1.1rem 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact {
+    padding: 4rem 0;
+  }
+  
+  .contact__container {
+    padding: 0 1rem;
+  }
+  
+  .contact__header {
+    margin-bottom: 3rem;
+  }
+  
+  .contact__title {
+    font-size: 2.2rem;
+  }
+  
+  .contact__subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .contact__content {
+    gap: 3rem;
+  }
+  
+  .contact__grid {
+    gap: 1.5rem;
+  }
+  
+  .contact__card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .contact__card-icon {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 1.3rem;
+  }
+  
+  .contact__card-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .contact__card-label {
+    font-size: 1.1rem;
+    margin: 0 0 1.2rem 0;
+  }
+  
+  .contact__card-info {
+    font-size: 0.88rem;
+    margin: 0 0 1.5rem 0;
+  }
+  
+  .contact__card-button {
+    font-size: 0.85rem;
+    padding: 0.7rem 1.2rem;
+  }
+  
+  .contact__cta {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .contact__cta-title {
+    font-size: 1.8rem;
+  }
+  
+  .contact__cta-text {
+    font-size: 0.9rem;
+    margin: 0 0 2rem 0;
+  }
+  
+  .contact__cta-button {
+    font-size: 0.9rem;
+    padding: 1rem 2rem;
+  }
+}

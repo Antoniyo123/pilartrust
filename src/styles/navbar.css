@@ -1,0 +1,328 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  padding: 1rem 0;
+}
+
+.nav--scrolled {
+  /* background: rgba(255, 255, 255, 0.95); */
+  backdrop-filter: blur(30px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  padding: 0.5rem 0;
+}
+
+.nav__container {
+    height: 80px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.592);
+  backdrop-filter: blur(20px);
+  border-radius: 60px;
+  padding: 0.8rem 2rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+}
+
+.nav--scrolled .nav__container {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+/* .nav__logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #000;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+} */
+.nav__logo-img{
+    width: auto;
+    height: 80px;
+
+}
+.nav__logo:hover {
+  transform: scale(1.03);
+  opacity: 0.8;
+}
+
+/* Center Menu Container */
+.nav__center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Desktop Menu */
+.nav__menu--desktop {
+  display: flex;
+  list-style: none;
+  gap: 3rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.nav__menu--mobile {
+  display: none;
+}
+
+.nav__item {
+  margin: 0;
+}
+
+.nav__link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #000;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.nav__link:hover {
+  color: #666;
+}
+
+/* CTA Button */
+.nav__cta {
+    height: 40px;
+  background: #314ad5d6;
+  color: #fff;
+  padding: 0.9rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.nav__cta:hover {
+  background: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.nav__cta-icon {
+  font-size: 1rem;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.nav__cta:hover .nav__cta-icon {
+  transform: translate(2px, -2px);
+}
+
+.nav__cta--desktop {
+  display: inline-flex;
+}
+
+/* Hamburger Menu */
+.nav__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+  transition: all 0.3s ease;
+}
+
+.nav__hamburger-line {
+  width: 28px;
+  height: 2.5px;
+  background: #000;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.nav__hamburger--active .nav__hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.nav__hamburger--active .nav__hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.nav__hamburger--active .nav__hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Mobile Menu */
+.nav__mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(30px);
+  transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1000;
+}
+
+.nav__mobile-menu--active {
+  right: 0;
+}
+
+.nav__menu--mobile {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav__menu--mobile .nav__link {
+  font-size: 1.5rem;
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 1px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.nav__menu--mobile .nav__item:nth-child(1) .nav__link {
+  animation-delay: 0.1s;
+}
+
+.nav__menu--mobile .nav__item:nth-child(2) .nav__link {
+  animation-delay: 0.2s;
+}
+
+.nav__menu--mobile .nav__item:nth-child(3) .nav__link {
+  animation-delay: 0.3s;
+}
+
+.nav__menu--mobile .nav__item:nth-child(4) .nav__cta {
+  animation-delay: 0.4s;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.nav__menu--mobile .nav__cta {
+  margin-top: 1rem;
+  padding: 1.2rem 2.5rem;
+  font-size: 0.85rem;
+}
+
+.nav__menu--mobile .nav__link:hover {
+  color: #666;
+  transform: translateX(5px);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .nav__container {
+    padding: 0.8rem 1.5rem;
+  }
+  
+  .nav__menu--desktop {
+    gap: 2rem;
+  }
+  
+  .nav__link {
+    font-size: 0.7rem;
+  }
+  
+  .nav__cta {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav__container {
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+  }
+  
+  /* Hide desktop elements */
+  .nav__menu--desktop,
+  .nav__cta--desktop {
+    display: none;
+  }
+  
+  /* Show hamburger */
+  .nav__hamburger {
+    display: flex;
+  }
+  
+  /* Show mobile menu */
+  .nav__mobile-menu {
+    display: block;
+  }
+  
+  .nav__center {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    padding: 0.8rem 0;
+  }
+  
+  .nav__container {
+    padding: 0.5rem 1rem;
+    margin: 0 1rem;
+  }
+  
+  .nav__logo {
+    font-size: 1.5rem;
+  }
+  
+  .nav__hamburger-line {
+    width: 24px;
+    height: 2px;
+  }
+  
+  .nav__menu--mobile .nav__link {
+    font-size: 1.3rem;
+  }
+  
+  .nav__menu--mobile .nav__cta {
+    padding: 1rem 2rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Smooth transitions */
+* {
+  -webkit-tap-highlight-color: transparent;
+}

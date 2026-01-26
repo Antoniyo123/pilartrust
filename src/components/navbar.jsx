@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import '../styles/navbar.css';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +23,20 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleSmoothScroll = (e, targetId) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+    closeMobileMenu();
+  };
+
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -35,31 +51,52 @@ const Navbar = () => {
   return (
     <nav className={`nav ${isScrolled ? 'nav--scrolled' : ''}`}>
       <div className="nav__container">
-        <a href="#home"  onClick={closeMobileMenu}>
+        <Link to="/" onClick={closeMobileMenu}>
           <img src={require("../img/logo3.png")} className="nav__logo-img" alt="Pilar Logo" />
-        </a>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="nav__center">
           <ul className="nav__menu nav__menu--desktop">
             <li className="nav__item">
-              <a href="#home" className="nav__link">HOME</a>
+              <a 
+                href="/#home" 
+                className="nav__link"
+                onClick={(e) => handleSmoothScroll(e, '#home')}
+              >
+                HOME
+              </a>
             </li>
             <li className="nav__item">
-              <a href="#services" className="nav__link">SERVICES</a>
+              <Link 
+                to="/services" 
+                className="nav__link"
+                onClick={closeMobileMenu}
+              >
+                SERVICES
+              </Link>
             </li>
+            
             <li className="nav__item">
-              <a href="#certification" className="nav__link">CERTIFICATION</a>
-            </li>
-             <li className="nav__item">
-              <a href="#about" className="nav__link">ABOUT</a>
+              <Link 
+                to="/about" 
+                className="nav__link"
+                onClick={closeMobileMenu}
+              >
+                ABOUT
+              </Link>
             </li>
           </ul>
         </div>
 
-        <a href="#contact" className="nav__cta nav__cta--desktop">
+        {/* Updated: Link to /contact page instead of anchor */}
+        <Link 
+          to="/contact" 
+          className="nav__cta nav__cta--desktop"
+          onClick={closeMobileMenu}
+        >
           <span className="nav__cta-icon">↗</span> GET IN TOUCH
-        </a>
+        </Link>
 
         {/* Hamburger Button */}
         <button 
@@ -76,18 +113,50 @@ const Navbar = () => {
         <div className={`nav__mobile-menu ${isMobileMenuOpen ? 'nav__mobile-menu--active' : ''}`}>
           <ul className="nav__menu nav__menu--mobile">
             <li className="nav__item">
-              <a href="#representation" className="nav__link" onClick={closeMobileMenu}>REPRESENTATION</a>
-            </li>
-            <li className="nav__item">
-              <a href="#services" className="nav__link" onClick={closeMobileMenu}>SERVICES</a>
-            </li>
-            <li className="nav__item">
-              <a href="#careers" className="nav__link" onClick={closeMobileMenu}>CAREERS</a>
-            </li>
-            <li className="nav__item">
-              <a href="#contact" className="nav__cta" onClick={closeMobileMenu}>
-                <span className="nav__cta-icon">↗</span> GET IN TOUCH
+              <a 
+                href="/#home" 
+                className="nav__link" 
+                onClick={(e) => handleSmoothScroll(e, '#home')}
+              >
+                HOME
               </a>
+            </li>
+            <li className="nav__item">
+              <Link 
+                to="/services" 
+                className="nav__link" 
+                onClick={closeMobileMenu}
+              >
+                SERVICES
+              </Link>
+            </li>
+            <li className="nav__item">
+              <a 
+                href="/#certification" 
+                className="nav__link" 
+                onClick={(e) => handleSmoothScroll(e, '#certification')}
+              >
+                CERTIFICATION
+              </a>
+            </li>
+            <li className="nav__item">
+              <Link 
+                to="/about" 
+                className="nav__link" 
+                onClick={closeMobileMenu}
+              >
+                ABOUT
+              </Link>
+            </li>
+            <li className="nav__item">
+              {/* Updated: Link to /contact page */}
+              <Link 
+                to="/contact" 
+                className="nav__cta" 
+                onClick={closeMobileMenu}
+              >
+                <span className="nav__cta-icon">↗</span> GET IN TOUCH
+              </Link>
             </li>
           </ul>
         </div>

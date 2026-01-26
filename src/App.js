@@ -7,7 +7,7 @@ import AboutPage from './components/About/AboutUs';
 import Footer from './components/footer';
 import ServicesPage from './components/Services/ServicesPage';
 import GetInTouchPage from './components/GetInTouch/GetInTouch';
-import LoadingScreen from './components/LoadingScreen';
+// import LoadingScreen from './components/LoadingScreen';
 import LoadingProgressBar from './components/LoadingProgressBar';
 
 import './styles/global.css';

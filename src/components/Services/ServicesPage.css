@@ -11,19 +11,19 @@
   width: 100%;
 }
 
-/* Hero Section */
+/* Hero Section - More Compact */
 .services-hero {
-  min-height: 80vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
   background: #fafafa;
-  padding: 120px 0 100px;
+  padding: 80px 0 60px;
 }
 
 .services-hero-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 100px;
+  gap: 60px;
   align-items: start;
 }
 
@@ -33,13 +33,13 @@
   text-transform: uppercase;
   color: #666;
   display: block;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .services-hero-title {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.15;
   color: #1a1a1a;
   margin-bottom: 0;
 }
@@ -47,59 +47,60 @@
 .services-hero-title em {
   font-family: Georgia, serif;
   font-style: italic;
+  color: #314ad5d6;
 }
 
 .services-hero-description {
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.7;
   color: #333;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .services-hero-description:last-child {
   margin-bottom: 0;
 }
 
-/* Services Overview */
+/* Services Overview - More Compact */
 .services-overview {
-  padding: 100px 0;
+  padding: 60px 0;
   background: #fff;
 }
 
 .overview-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 60px;
+  gap: 40px;
 }
 
 .overview-item {
   text-align: center;
-  padding: 40px 20px;
+  padding: 30px 20px;
   border: 1px solid #e8e8e8;
 }
 
 .overview-number {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 300;
   color: #1a1a1a;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .overview-label {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #666;
 }
 
-/* Services Detail */
+/* Services Detail - More Compact */
 .services-detail {
-  padding: 80px 0;
+  padding: 60px 0;
   background: #fafafa;
 }
 
 .service-card {
   background: #fff;
-  padding: 60px;
-  margin-bottom: 40px;
+  padding: 40px;
+  margin-bottom: 30px;
   border: 1px solid #e8e8e8;
   transition: all 0.3s ease;
 }
@@ -116,28 +117,28 @@
 .service-header {
   display: flex;
   align-items: flex-start;
-  gap: 40px;
-  margin-bottom: 40px;
-  padding-bottom: 40px;
+  gap: 30px;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
   border-bottom: 1px solid #e8e8e8;
 }
 
 .service-number {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 300;
   color: #999;
-  min-width: 80px;
+  min-width: 70px;
 }
 
 .service-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 400;
   color: #1a1a1a;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .service-subtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #666;
   font-style: italic;
 }
@@ -145,26 +146,26 @@
 .service-content {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 60px;
+  gap: 40px;
 }
 
 .service-description {
-  font-size: 1.05rem;
-  line-height: 1.8;
+  font-size: 0.98rem;
+  line-height: 1.7;
   color: #333;
 }
 
 .service-features {
   background: #fafafa;
-  padding: 32px;
+  padding: 24px;
   border-left: 3px solid #1a1a1a;
 }
 
 .features-title {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #1a1a1a;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -176,12 +177,12 @@
 }
 
 .feature-item {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #555;
-  padding: 10px 0;
+  padding: 8px 0;
   padding-left: 24px;
   position: relative;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .feature-item::before {
@@ -192,15 +193,15 @@
   font-weight: bold;
 }
 
-/* Why Choose Us Section */
+/* Why Choose Us Section - More Compact */
 .why-choose {
-  padding: 120px 0;
+  padding: 80px 0;
   background: #fff;
 }
 
 .section-header-center {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 }
 
 .section-label {
@@ -209,11 +210,11 @@
   text-transform: uppercase;
   color: #666;
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .section-title-center {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 300;
   line-height: 1.2;
   color: #1a1a1a;
@@ -229,11 +230,11 @@
 .why-choose-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 60px;
+  gap: 40px;
 }
 
 .why-item {
-  padding: 40px;
+  padding: 30px;
   background: #fafafa;
   border: 1px solid #e8e8e8;
   transition: all 0.3s ease;
@@ -245,34 +246,34 @@
 }
 
 .why-icon {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: #1a1a1a;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  margin-bottom: 24px;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
 }
 
 .why-title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 400;
   color: #1a1a1a;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .why-description {
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 0.95rem;
+  line-height: 1.6;
   color: #555;
 }
 
-/* CTA Section */
+/* CTA Section - More Compact */
 .services-cta {
-  padding: 120px 0;
+  padding: 80px 0;
   background: #1a1a1a;
   color: #fff;
 }
@@ -284,24 +285,24 @@
 }
 
 .cta-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 300;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   color: #fff;
 }
 
 .cta-description {
-  font-size: 1.2rem;
-  line-height: 1.8;
+  font-size: 1.1rem;
+  line-height: 1.7;
   color: #ccc;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .cta-button {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 18px 40px;
+  padding: 16px 36px;
   background: #fff;
   color: #1a1a1a;
   text-decoration: none;
@@ -330,42 +331,42 @@
 
   .services-hero-content {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 30px;
   }
 
   .services-hero-title {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
 
   .overview-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 20px;
   }
 
   .service-card {
-    padding: 40px;
+    padding: 30px;
   }
 
   .service-content {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 30px;
   }
 
   .service-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .why-choose-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 24px;
   }
 
   .section-title-center {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   .cta-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 }
 
@@ -375,28 +376,31 @@
   }
 
   .services-hero {
-    padding: 80px 0 60px;
+    padding: 60px 0 40px;
     min-height: auto;
   }
 
   .services-hero-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   .services-overview,
   .services-detail,
   .why-choose,
   .services-cta {
-    padding: 60px 0;
+    padding: 50px 0;
   }
 
   .service-card {
-    padding: 30px;
+    padding: 24px;
+    margin-bottom: 20px;
   }
 
   .service-header {
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
   }
 
   .service-number {
@@ -404,18 +408,26 @@
   }
 
   .service-title {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+  }
+
+  .service-features {
+    padding: 20px;
   }
 
   .why-item {
-    padding: 30px;
+    padding: 24px;
   }
 
   .section-title-center {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .cta-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+  
+  .cta-description {
+    font-size: 1rem;
   }
 }

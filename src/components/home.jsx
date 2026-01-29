@@ -19,7 +19,7 @@ const Home = () => {
         <div className="hero__content">
           <h1 className="hero__title">
             <span className="hero__title-main">PILAR</span>
-            <span className="hero__title-accent">Your Partner in Excellence</span>
+            <span className="hero__title-accent">Your Partner in <em>Excellence</em></span>
           </h1>
           
           <p className="hero__subtitle">

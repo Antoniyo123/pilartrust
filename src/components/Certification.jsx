@@ -44,22 +44,32 @@ const Certification = () => {
   return (
     <section className="certification" id="certification">
       <div className="certification__container">
+        {/* Header */}
         <div className="certification__header">
-          <h2 className="certification__title">Our Process</h2>
+          <h2 className="certification__title">Our Certification Process</h2>
           <p className="certification__subtitle">Six steps to achieve your ISO certification</p>
         </div>
         
+        {/* Grid */}
         <div className="certification__grid">
           {certificationData.map((cert, index) => (
             <div key={index} className="certification__card">
               <div className="certification__card-image">
-                <img src={cert.image} alt={cert.title} />
-                <div className="certification__card-number">{cert.number}</div>
+                <img src={cert.image} alt={cert.title} loading="lazy" />
+                <div className="certification__card-overlay">
+                  <div className="certification__card-number">{cert.number}</div>
+                </div>
               </div>
+              
               <div className="certification__card-content">
                 <h3 className="certification__card-title">{cert.title}</h3>
                 <p className="certification__card-description">{cert.description}</p>
-                <button className="certification__card-arrow">→</button>
+                
+                <button className="certification__card-link" aria-label={`Learn more about ${cert.title}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M7 17L17 7M7 7h10v10"/>
+                  </svg>
+                </button>
               </div>
             </div>
           ))}

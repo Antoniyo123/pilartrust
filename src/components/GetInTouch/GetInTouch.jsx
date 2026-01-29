@@ -1,4 +1,3 @@
-// GetInTouch.jsx
 import React, { useState } from 'react';
 import './GetInTouch.css';
 
@@ -58,28 +57,15 @@ const GetInTouchPage = () => {
           <div className="hero-content">
             <div className="hero-badge">Let's Connect</div>
             <h1 className="hero-title">
-              Transform Your Vision Into <span className="highlight">Reality</span>
+              Get Your ISO <span className="highlight">Certification</span>
             </h1>
             <p className="hero-description">
-              Partner with us to unlock innovative solutions tailored to your business needs. 
-              Our expert team is ready to elevate your brand and drive measurable results.
+              Partner with us to achieve international standards certification. 
+              Our expert team is ready to guide you through every step of the certification process.
             </p>
           </div>
           
-          <div className="hero-stats">
-            <div className="stat-box">
-              <div className="stat-value">500+</div>
-              <div className="stat-text">Projects Delivered</div>
-            </div>
-            <div className="stat-box">
-              <div className="stat-value">200+</div>
-              <div className="stat-text">Happy Clients</div>
-            </div>
-            <div className="stat-box">
-              <div className="stat-value">15+</div>
-              <div className="stat-text">Expert Team</div>
-            </div>
-          </div>
+         
         </div>
       </section>
 
@@ -89,87 +75,53 @@ const GetInTouchPage = () => {
           {/* Left Column - Info */}
           <div className="info-column">
             <div className="info-block">
-              <h2 className="section-title">Why Choose Us</h2>
+              <h2 className="section-title">Why Choose Pilar</h2>
               <p className="section-description">
-                We're more than just a service provider. We're your strategic partner in growth, 
-                combining creativity with data-driven insights to deliver exceptional results.
+                We're more than just a certification body. We're your strategic partner in achieving 
+                excellence through internationally recognized standards.
               </p>
             </div>
 
             <div className="features-list">
               <div className="feature-item">
-                <div className="feature-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                </div>
+                <div className="feature-number">01</div>
                 <div className="feature-content">
                   <h3 className="feature-title">Proven Expertise</h3>
-                  <p className="feature-text">Years of experience across diverse industries</p>
+                  <p className="feature-text">Certified auditors with extensive industry experience</p>
                 </div>
               </div>
 
               <div className="feature-item">
-                <div className="feature-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                  </svg>
-                </div>
+                <div className="feature-number">02</div>
                 <div className="feature-content">
-                  <h3 className="feature-title">Fast Execution</h3>
-                  <p className="feature-text">Agile approach with quick turnaround times</p>
+                  <h3 className="feature-title">Fast Processing</h3>
+                  <p className="feature-text">Streamlined certification process with quick turnaround</p>
                 </div>
               </div>
 
               <div className="feature-item">
-                <div className="feature-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-                  </svg>
-                </div>
+                <div className="feature-number">03</div>
                 <div className="feature-content">
-                  <h3 className="feature-title">Dedicated Support</h3>
-                  <p className="feature-text">24/7 support throughout your journey</p>
+                  <h3 className="feature-title">Full Support</h3>
+                  <p className="feature-text">Comprehensive guidance from consultation to certification</p>
                 </div>
               </div>
             </div>
 
-            <div className="contact-cards">
-              <div className="contact-card">
-                <div className="contact-card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                  </svg>
-                </div>
-                <div className="contact-card-content">
-                  <div className="contact-card-label">Email</div>
-                  <div className="contact-card-value">info@pilardigital.com</div>
-                </div>
+            <div className="contact-info">
+              <div className="contact-item">
+                <div className="contact-label">Email</div>
+                <div className="contact-value">info@pilar-iso.com</div>
               </div>
 
-              <div className="contact-card">
-                <div className="contact-card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                  </svg>
-                </div>
-                <div className="contact-card-content">
-                  <div className="contact-card-label">Phone</div>
-                  <div className="contact-card-value">+62 812 3456 7890</div>
-                </div>
+              <div className="contact-item">
+                <div className="contact-label">Phone</div>
+                <div className="contact-value">+62 21 5252 4567</div>
               </div>
 
-              <div className="contact-card">
-                <div className="contact-card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                  </svg>
-                </div>
-                <div className="contact-card-content">
-                  <div className="contact-card-label">Location</div>
-                  <div className="contact-card-value">Jakarta, Indonesia</div>
-                </div>
+              <div className="contact-item">
+                <div className="contact-label">Location</div>
+                <div className="contact-value">Jakarta Selatan, Indonesia</div>
               </div>
             </div>
           </div>
@@ -178,8 +130,8 @@ const GetInTouchPage = () => {
           <div className="form-column">
             <div className="form-card">
               <div className="form-header">
-                <h2 className="form-title">Send us a Message</h2>
-                <p className="form-subtitle">Fill out the form below and we'll get back to you within 24 hours</p>
+                <h2 className="form-title">Request Consultation</h2>
+                <p className="form-subtitle">Fill out the form and we'll get back to you within 24 hours</p>
               </div>
 
               <div className="form-body">
@@ -193,12 +145,12 @@ const GetInTouchPage = () => {
                       value={formData.name}
                       onChange={handleChange}
                       className="form-input"
-                      placeholder="John Doe"
+                      placeholder="Your name"
                     />
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="email" className="form-label">Email Address *</label>
+                    <label htmlFor="email" className="form-label">Email *</label>
                     <input
                       type="email"
                       id="email"
@@ -206,14 +158,14 @@ const GetInTouchPage = () => {
                       value={formData.email}
                       onChange={handleChange}
                       className="form-input"
-                      placeholder="john@example.com"
+                      placeholder="your@email.com"
                     />
                   </div>
                 </div>
 
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="phone" className="form-label">Phone Number *</label>
+                    <label htmlFor="phone" className="form-label">Phone *</label>
                     <input
                       type="tel"
                       id="phone"
@@ -226,7 +178,7 @@ const GetInTouchPage = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="company" className="form-label">Company Name</label>
+                    <label htmlFor="company" className="form-label">Company</label>
                     <input
                       type="text"
                       id="company"
@@ -234,13 +186,13 @@ const GetInTouchPage = () => {
                       value={formData.company}
                       onChange={handleChange}
                       className="form-input"
-                      placeholder="Your Company (optional)"
+                      placeholder="Company name"
                     />
                   </div>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="service" className="form-label">Service Required *</label>
+                  <label htmlFor="service" className="form-label">ISO Standard *</label>
                   <select
                     id="service"
                     name="service"
@@ -248,17 +200,19 @@ const GetInTouchPage = () => {
                     onChange={handleChange}
                     className="form-select"
                   >
-                    <option value="">Select a service</option>
-                    <option value="branding">Brand Strategy & Identity</option>
-                    <option value="digital">Digital Marketing</option>
-                    <option value="creative">Creative Content Production</option>
-                    <option value="consulting">Business Consulting</option>
-                    <option value="other">Other Services</option>
+                    <option value="">Select ISO standard</option>
+                    <option value="iso9001">ISO 9001 - Quality Management</option>
+                    <option value="iso27001">ISO 27001 - Information Security</option>
+                    <option value="iso14001">ISO 14001 - Environmental Management</option>
+                    <option value="iso45001">ISO 45001 - Health & Safety</option>
+                    <option value="iso22000">ISO 22000 - Food Safety</option>
+                    <option value="iso37001">ISO 37001 - Anti-Bribery</option>
+                    <option value="other">Other Standards</option>
                   </select>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message" className="form-label">Your Message *</label>
+                  <label htmlFor="message" className="form-label">Message *</label>
                   <textarea
                     id="message"
                     name="message"
@@ -266,7 +220,7 @@ const GetInTouchPage = () => {
                     onChange={handleChange}
                     className="form-textarea"
                     rows="5"
-                    placeholder="Tell us about your project or requirements..."
+                    placeholder="Tell us about your certification needs..."
                   ></textarea>
                 </div>
 
@@ -279,12 +233,12 @@ const GetInTouchPage = () => {
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </span>
                   <svg className="submit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
                 </button>
 
                 {submitStatus === 'success' && (
-                  <div className="success-alert">
+                  <div className="success-message">
                     <svg className="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>

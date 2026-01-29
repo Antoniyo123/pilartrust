@@ -44,35 +44,44 @@ const Services = () => {
   return (
     <section className="services" id="services">
       <div className="services__container">
+        {/* Header */}
         <div className="services__header">
-          <h2 className="services__title">Our ISO Certification Services</h2>
-          <p className="services__subtitle">Comprehensive management system solutions for your business</p>
+          <h2 className="services__title">ISO Certification Services</h2>
+          <p className="services__subtitle">Comprehensive management system solutions</p>
         </div>
         
+        {/* Services Grid */}
         <div className="services__grid">
           {servicesData.map((service, index) => (
             <div key={index} className="services__card">
-              <div className="services__card-icon">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  width="40" 
-                  height="40" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="1.5" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                >
-                  {service.icon}
-                </svg>
+              <div className="services__card-header">
+                <div className="services__card-icon">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="32" 
+                    height="32" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="1.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  >
+                    {service.icon}
+                  </svg>
+                </div>
+                <div className="services__card-badge">{service.subtitle}</div>
               </div>
+              
               <div className="services__card-content">
                 <h3 className="services__card-title">{service.title}</h3>
-                <p className="services__card-subtitle">{service.subtitle}</p>
                 <p className="services__card-description">{service.description}</p>
+                
                 <button className="services__card-link">
-                  Learn More <span className="services__card-arrow">→</span>
+                  Learn More 
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M7 17L17 7M7 7h10v10"/>
+                  </svg>
                 </button>
               </div>
             </div>

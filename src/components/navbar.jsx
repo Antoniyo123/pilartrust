@@ -5,6 +5,7 @@ import '../styles/navbar.css';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [language, setLanguage] = useState('EN');
   const location = useLocation();
 
   useEffect(() => {
@@ -21,6 +22,10 @@ const Navbar = () => {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const toggleLanguage = () => {
+    setLanguage(prevLang => prevLang === 'EN' ? 'ID' : 'EN');
   };
 
   const handleSmoothScroll = (e, targetId) => {
@@ -48,8 +53,26 @@ const Navbar = () => {
     };
   }, [isMobileMenuOpen]);
 
+  // Determine navbar theme based on current route
+  const getNavbarTheme = () => {
+    // Dark pages (light text on dark background)
+    const darkPages = ['/services', '/about', '/contact'  ];
+    
+    if (isScrolled) {
+      return 'light'; // Always light when scrolled
+    }
+    
+    if (darkPages.includes(location.pathname)) {
+      return 'dark';
+    }
+    
+    return 'light'; // Default (home page)
+  };
+
+  const navbarTheme = getNavbarTheme();
+
   return (
-    <nav className={`nav ${isScrolled ? 'nav--scrolled' : ''}`}>
+    <nav className={`nav ${isScrolled ? 'nav--scrolled' : ''} nav--${navbarTheme}`}>
       <div className="nav__container">
         <Link to="/" onClick={closeMobileMenu}>
           <img src={require("../img/logo3.png")} className="nav__logo-img" alt="Pilar Logo" />
@@ -89,14 +112,28 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Updated: Link to /contact page instead of anchor */}
-        <Link 
-          to="/contact" 
-          className="nav__cta nav__cta--desktop"
-          onClick={closeMobileMenu}
-        >
-          <span className="nav__cta-icon">↗</span> GET IN TOUCH
-        </Link>
+        {/* Right side: Language Switcher + CTA */}
+        <div className="nav__right">
+          {/* Language Switcher */}
+          <button 
+            className="nav__lang-switcher"
+            onClick={toggleLanguage}
+            aria-label="Switch language"
+          >
+            <span className={`nav__lang-option ${language === 'EN' ? 'active' : ''}`}>EN</span>
+            <span className="nav__lang-divider">/</span>
+            <span className={`nav__lang-option ${language === 'ID' ? 'active' : ''}`}>ID</span>
+          </button>
+
+          {/* CTA Button */}
+          <Link 
+            to="/contact" 
+            className="nav__cta nav__cta--desktop"
+            onClick={closeMobileMenu}
+          >
+            <span className="nav__cta-icon">↗</span> GET IN TOUCH
+          </Link>
+        </div>
 
         {/* Hamburger Button */}
         <button 
@@ -149,7 +186,18 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav__item">
-              {/* Updated: Link to /contact page */}
+              {/* Language Switcher Mobile */}
+              <button 
+                className="nav__lang-switcher nav__lang-switcher--mobile"
+                onClick={toggleLanguage}
+              >
+                <span className={`nav__lang-option ${language === 'EN' ? 'active' : ''}`}>EN</span>
+                <span className="nav__lang-divider">/</span>
+                <span className={`nav__lang-option ${language === 'ID' ? 'active' : ''}`}>ID</span>
+              </button>
+            </li>
+            <li className="nav__item">
+              {/* CTA Mobile */}
               <Link 
                 to="/contact" 
                 className="nav__cta" 

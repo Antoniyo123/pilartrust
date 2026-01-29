@@ -1,5 +1,5 @@
 .contact {
-  padding: 8rem 0;
+  padding: 6rem 0 5rem;
   background: #1a1a1a;
   position: relative;
   overflow: hidden;
@@ -21,46 +21,129 @@
   padding: 0 4rem;
 }
 
+/* Header */
 .contact__header {
   text-align: center;
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
 }
 
 .contact__title {
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   font-weight: 200;
   letter-spacing: -1px;
   color: #fff;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.8rem 0;
 }
 
 .contact__subtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 300;
   color: #999;
   margin: 0;
   letter-spacing: 0.5px;
 }
 
+/* Running Text - Brands */
+.contact__brands {
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.contact__brands-label {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #666;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.contact__brands-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.5rem 0;
+  border-radius: 8px;
+}
+
+.contact__brands-wrapper::before,
+.contact__brands-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.contact__brands-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #1a1a1a, transparent);
+}
+
+.contact__brands-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #1a1a1a, transparent);
+}
+
+.contact__brands-track {
+  display: flex;
+  gap: 4rem;
+  animation: scroll 40s linear infinite;
+  width: fit-content;
+}
+
+.contact__brand-item {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #888;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.contact__brands-wrapper:hover .contact__brands-track {
+  animation-play-state: paused;
+}
+
+.contact__brands-wrapper:hover .contact__brand-item {
+  color: #fff;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Content */
 .contact__content {
   display: flex;
   flex-direction: column;
-  gap: 6rem;
+  gap: 3rem;
 }
 
+/* Contact Grid */
 .contact__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
+  gap: 1.5rem;
 }
 
 .contact__card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 3rem 2.5rem;
+  padding: 2rem 1.5rem;
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+  border-radius: 12px;
 }
 
 .contact__card::before {
@@ -83,18 +166,18 @@
 .contact__card:hover {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-8px);
+  transform: translateY(-5px);
 }
 
 .contact__card-icon {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 50%;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1.5rem;
   transition: all 0.4s ease;
 }
 
@@ -114,54 +197,67 @@
 }
 
 .contact__card-label {
-  font-size: 1.3rem;
-  font-weight: 400;
+  font-size: 1.1rem;
+  font-weight: 500;
   color: #fff;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1rem 0;
   text-align: center;
   letter-spacing: -0.3px;
 }
 
 .contact__card-info {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 300;
-  line-height: 1.8;
+  line-height: 1.7;
   color: #aaa;
-  margin: 0 0 2rem 0;
+  margin: 0 0 1.5rem 0;
   text-align: center;
 }
 
 .contact__card-button {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 400;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: #fff;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.8rem 1.5rem;
+  padding: 0.7rem 1.3rem;
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
-  justify-content: center;
   letter-spacing: 0.5px;
+  border-radius: 6px;
+}
+
+.contact__card-button svg {
+  transition: transform 0.3s ease;
 }
 
 .contact__card-button:hover {
   background: #fff;
   color: #1a1a1a;
   border-color: #fff;
-  gap: 1rem;
 }
 
+.contact__card-button:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* CTA Section */
 .contact__cta {
   background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 4rem 3rem;
-  text-align: center;
+  padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
   position: relative;
   overflow: hidden;
+  border-radius: 12px;
 }
 
 .contact__cta::before {
@@ -180,40 +276,49 @@
   50% { transform: scale(1.1); opacity: 0.8; }
 }
 
-.contact__cta-title {
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: #fff;
-  margin: 0 0 1rem 0;
-  letter-spacing: -0.5px;
+.contact__cta-content {
+  flex: 1;
   position: relative;
   z-index: 1;
 }
 
+.contact__cta-title {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.5px;
+}
+
 .contact__cta-text {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 300;
   color: #999;
-  margin: 0 0 2.5rem 0;
-  position: relative;
-  z-index: 1;
+  margin: 0;
 }
 
 .contact__cta-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 1px;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
   color: #1a1a1a;
   background: #fff;
   border: none;
-  padding: 1.2rem 3rem;
+  padding: 1rem 2.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+.contact__cta-button svg {
+  transition: transform 0.3s ease;
 }
 
 .contact__cta-button:hover {
@@ -222,10 +327,14 @@
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
 }
 
+.contact__cta-button:hover svg {
+  transform: translateX(5px);
+}
+
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .contact {
-    padding: 6rem 0;
+    padding: 5rem 0 4rem;
   }
   
   .contact__container {
@@ -233,169 +342,27 @@
   }
   
   .contact__header {
-    margin-bottom: 5rem;
+    margin-bottom: 3.5rem;
   }
   
   .contact__title {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
   
-  .contact__subtitle {
-    font-size: 1rem;
+  .contact__brands {
+    margin-bottom: 3.5rem;
   }
   
-  .contact__content {
-    gap: 5rem;
-  }
-  
-  .contact__grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-  
-  .contact__card {
-    padding: 2.5rem 2rem;
-  }
-  
-  .contact__card-icon {
-    width: 65px;
-    height: 65px;
-    margin: 0 auto 1.8rem;
-  }
-  
-  .contact__card-icon svg {
-    width: 30px;
-    height: 30px;
-  }
-  
-  .contact__card-label {
-    font-size: 1.2rem;
-  }
-  
-  .contact__card-info {
-    font-size: 0.95rem;
-  }
-  
-  .contact__cta {
-    padding: 3.5rem 2.5rem;
-  }
-  
-  .contact__cta-title {
-    font-size: 2.2rem;
-  }
-  
-  .contact__cta-text {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .contact {
-    padding: 5rem 0;
-  }
-  
-  .contact__container {
-    padding: 0 1.5rem;
-  }
-  
-  .contact__header {
-    margin-bottom: 4rem;
-  }
-  
-  .contact__title {
-    font-size: 2.8rem;
-  }
-  
-  .contact__subtitle {
-    font-size: 0.95rem;
-  }
-  
-  .contact__content {
-    gap: 4rem;
+  .contact__brand-item {
+    font-size: 0.8rem;
   }
   
   .contact__grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.3rem;
   }
   
   .contact__card {
-    padding: 2.5rem 2rem;
-  }
-  
-  .contact__card-icon {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 1.5rem;
-  }
-  
-  .contact__card-icon svg {
-    width: 28px;
-    height: 28px;
-  }
-  
-  .contact__card-label {
-    font-size: 1.15rem;
-  }
-  
-  .contact__card-info {
-    font-size: 0.92rem;
-  }
-  
-  .contact__card-button {
-    font-size: 0.88rem;
-    padding: 0.75rem 1.3rem;
-  }
-  
-  .contact__cta {
-    padding: 3rem 2rem;
-  }
-  
-  .contact__cta-title {
-    font-size: 2rem;
-  }
-  
-  .contact__cta-text {
-    font-size: 0.95rem;
-  }
-  
-  .contact__cta-button {
-    font-size: 0.95rem;
-    padding: 1.1rem 2.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .contact {
-    padding: 4rem 0;
-  }
-  
-  .contact__container {
-    padding: 0 1rem;
-  }
-  
-  .contact__header {
-    margin-bottom: 3rem;
-  }
-  
-  .contact__title {
-    font-size: 2.2rem;
-  }
-  
-  .contact__subtitle {
-    font-size: 0.9rem;
-  }
-  
-  .contact__content {
-    gap: 3rem;
-  }
-  
-  .contact__grid {
-    gap: 1.5rem;
-  }
-  
-  .contact__card {
-    padding: 2rem 1.5rem;
+    padding: 1.8rem 1.3rem;
   }
   
   .contact__card-icon {
@@ -409,23 +376,57 @@
     height: 26px;
   }
   
-  .contact__card-label {
-    font-size: 1.1rem;
-    margin: 0 0 1.2rem 0;
+  .contact__cta {
+    padding: 2.5rem;
   }
   
-  .contact__card-info {
-    font-size: 0.88rem;
-    margin: 0 0 1.5rem 0;
+  .contact__cta-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .contact {
+    padding: 4rem 0 3rem;
   }
   
-  .contact__card-button {
-    font-size: 0.85rem;
-    padding: 0.7rem 1.2rem;
+  .contact__header {
+    margin-bottom: 3rem;
+  }
+  
+  .contact__title {
+    font-size: 2.5rem;
+  }
+  
+  .contact__subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .contact__brands {
+    margin-bottom: 3rem;
+  }
+  
+  .contact__brands-wrapper {
+    padding: 1.2rem 0;
+  }
+  
+  .contact__brand-item {
+    font-size: 0.75rem;
+  }
+  
+  .contact__content {
+    gap: 2.5rem;
+  }
+  
+  .contact__grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
   }
   
   .contact__cta {
-    padding: 2.5rem 1.5rem;
+    flex-direction: column;
+    text-align: center;
+    padding: 2.5rem 2rem;
   }
   
   .contact__cta-title {
@@ -433,12 +434,159 @@
   }
   
   .contact__cta-text {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contact__cta-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact__container {
+    padding: 0 1.5rem;
+  }
+  
+  .contact__title {
+    font-size: 2.2rem;
+  }
+  
+  .contact__brands-wrapper::before,
+  .contact__brands-wrapper::after {
+    width: 80px;
+  }
+  
+  .contact__card {
+    padding: 1.8rem 1.5rem;
+  }
+  
+  .contact__card-label {
+    font-size: 1.05rem;
+  }
+  
+  .contact__card-info {
+    font-size: 0.88rem;
+  }
+  
+  .contact__card-button {
+    font-size: 0.78rem;
+    padding: 0.65rem 1.2rem;
+  }
+  
+  .contact__cta {
+    padding: 2rem 1.5rem;
+  }
+  
+  .contact__cta-title {
+    font-size: 1.6rem;
+  }
+  
+  .contact__cta-text {
     font-size: 0.9rem;
-    margin: 0 0 2rem 0;
   }
   
   .contact__cta-button {
     font-size: 0.9rem;
-    padding: 1rem 2rem;
+    padding: 0.95rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact {
+    padding: 3rem 0 2.5rem;
+  }
+  
+  .contact__container {
+    padding: 0 1rem;
+  }
+  
+  .contact__header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .contact__title {
+    font-size: 1.8rem;
+  }
+  
+  .contact__subtitle {
+    font-size: 0.88rem;
+  }
+  
+  .contact__brands {
+    margin-bottom: 2.5rem;
+  }
+  
+  .contact__brands-label {
+    font-size: 0.7rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .contact__brands-wrapper {
+    padding: 1rem 0;
+  }
+  
+  .contact__brands-track {
+    gap: 3rem;
+  }
+  
+  .contact__brand-item {
+    font-size: 0.7rem;
+  }
+  
+  .contact__content {
+    gap: 2rem;
+  }
+  
+  .contact__grid {
+    gap: 1rem;
+  }
+  
+  .contact__card {
+    padding: 1.5rem 1.2rem;
+  }
+  
+  .contact__card-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 1.2rem;
+  }
+  
+  .contact__card-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .contact__card-label {
+    font-size: 1rem;
+    margin: 0 0 0.8rem 0;
+  }
+  
+  .contact__card-info {
+    font-size: 0.85rem;
+    margin: 0 0 1.2rem 0;
+  }
+  
+  .contact__card-button {
+    font-size: 0.75rem;
+    padding: 0.6rem 1rem;
+  }
+  
+  .contact__cta {
+    padding: 1.8rem 1.2rem;
+  }
+  
+  .contact__cta-title {
+    font-size: 1.4rem;
+  }
+  
+  .contact__cta-text {
+    font-size: 0.85rem;
+    margin-bottom: 1.3rem;
+  }
+  
+  .contact__cta-button {
+    font-size: 0.85rem;
+    padding: 0.9rem 1.8rem;
   }
 }

@@ -187,12 +187,12 @@
 }
 
 .contact__card:hover .contact__card-icon {
-  background: #fff;
+  background: #314ad5d6;
   transform: scale(1.1);
 }
 
 .contact__card:hover .contact__card-icon svg {
-  color: #1a1a1a;
+  color: #fff;
   transform: rotate(360deg);
 }
 
@@ -237,8 +237,8 @@
 }
 
 .contact__card-button:hover {
-  background: #fff;
-  color: #1a1a1a;
+  background: #314ad5d6;
+  color: #fff;
   border-color: #fff;
 }
 
@@ -305,8 +305,8 @@
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  color: #1a1a1a;
-  background: #fff;
+  color: #fff ;
+  background: #314ad5d6;
   border: none;
   padding: 1rem 2.5rem;
   cursor: pointer;
@@ -322,7 +322,7 @@
 }
 
 .contact__cta-button:hover {
-  background: #f0f0f0;
+  background: #1a1a1a;
   transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
 }

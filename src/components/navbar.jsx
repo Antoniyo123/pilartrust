@@ -6,6 +6,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState('EN');
+  const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
 
   useEffect(() => {
@@ -15,6 +16,32 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Detect active section on scroll (for home page)
+  useEffect(() => {
+    if (location.pathname === '/') {
+      const handleScrollSpy = () => {
+        const sections = ['home', 'certification'];
+        let current = 'home';
+
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= 100 && rect.bottom >= 100) {
+              current = section;
+            }
+          }
+        }
+        setActiveSection(current);
+      };
+
+      window.addEventListener('scroll', handleScrollSpy);
+      handleScrollSpy(); // Initial check
+      
+      return () => window.removeEventListener('scroll', handleScrollSpy);
+    }
+  }, [location.pathname]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -28,7 +55,7 @@ const Navbar = () => {
     setLanguage(prevLang => prevLang === 'EN' ? 'ID' : 'EN');
   };
 
-  const handleSmoothScroll = (e, targetId) => {
+  const handleSmoothScroll = (e, targetId, sectionName) => {
     if (location.pathname === '/') {
       e.preventDefault();
       const targetElement = document.querySelector(targetId);
@@ -37,6 +64,7 @@ const Navbar = () => {
           behavior: 'smooth',
           block: 'start'
         });
+        setActiveSection(sectionName);
       }
     }
     closeMobileMenu();
@@ -55,18 +83,25 @@ const Navbar = () => {
 
   // Determine navbar theme based on current route
   const getNavbarTheme = () => {
-    // Dark pages (light text on dark background)
-    const darkPages = ['/services', '/about', '/contact'  ];
+    const darkPages = ['/services', '/about', '/contact'];
     
     if (isScrolled) {
-      return 'light'; // Always light when scrolled
+      return 'light';
     }
     
     if (darkPages.includes(location.pathname)) {
       return 'dark';
     }
     
-    return 'light'; // Default (home page)
+    return 'light';
+  };
+
+  // Check if link is active
+  const isActive = (path, section = null) => {
+    if (section && location.pathname === '/') {
+      return activeSection === section;
+    }
+    return location.pathname === path;
   };
 
   const navbarTheme = getNavbarTheme();
@@ -84,8 +119,8 @@ const Navbar = () => {
             <li className="nav__item">
               <a 
                 href="/#home" 
-                className="nav__link"
-                onClick={(e) => handleSmoothScroll(e, '#home')}
+                className={`nav__link ${isActive('/', 'home') ? 'active' : ''}`}
+                onClick={(e) => handleSmoothScroll(e, '#home', 'home')}
               >
                 HOME
               </a>
@@ -93,17 +128,16 @@ const Navbar = () => {
             <li className="nav__item">
               <Link 
                 to="/services" 
-                className="nav__link"
+                className={`nav__link ${isActive('/services') ? 'active' : ''}`}
                 onClick={closeMobileMenu}
               >
                 SERVICES
               </Link>
             </li>
-            
             <li className="nav__item">
               <Link 
                 to="/about" 
-                className="nav__link"
+                className={`nav__link ${isActive('/about') ? 'active' : ''}`}
                 onClick={closeMobileMenu}
               >
                 ABOUT
@@ -128,7 +162,7 @@ const Navbar = () => {
           {/* CTA Button */}
           <Link 
             to="/contact" 
-            className="nav__cta nav__cta--desktop"
+            className={`nav__cta nav__cta--desktop ${isActive('/contact') ? 'active' : ''}`}
             onClick={closeMobileMenu}
           >
             <span className="nav__cta-icon">↗</span> GET IN TOUCH
@@ -152,8 +186,8 @@ const Navbar = () => {
             <li className="nav__item">
               <a 
                 href="/#home" 
-                className="nav__link" 
-                onClick={(e) => handleSmoothScroll(e, '#home')}
+                className={`nav__link ${isActive('/', 'home') ? 'active' : ''}`}
+                onClick={(e) => handleSmoothScroll(e, '#home', 'home')}
               >
                 HOME
               </a>
@@ -161,7 +195,7 @@ const Navbar = () => {
             <li className="nav__item">
               <Link 
                 to="/services" 
-                className="nav__link" 
+                className={`nav__link ${isActive('/services') ? 'active' : ''}`}
                 onClick={closeMobileMenu}
               >
                 SERVICES
@@ -170,8 +204,8 @@ const Navbar = () => {
             <li className="nav__item">
               <a 
                 href="/#certification" 
-                className="nav__link" 
-                onClick={(e) => handleSmoothScroll(e, '#certification')}
+                className={`nav__link ${isActive('/', 'certification') ? 'active' : ''}`}
+                onClick={(e) => handleSmoothScroll(e, '#certification', 'certification')}
               >
                 CERTIFICATION
               </a>
@@ -179,7 +213,7 @@ const Navbar = () => {
             <li className="nav__item">
               <Link 
                 to="/about" 
-                className="nav__link" 
+                className={`nav__link ${isActive('/about') ? 'active' : ''}`}
                 onClick={closeMobileMenu}
               >
                 ABOUT
@@ -200,7 +234,7 @@ const Navbar = () => {
               {/* CTA Mobile */}
               <Link 
                 to="/contact" 
-                className="nav__cta" 
+                className={`nav__cta ${isActive('/contact') ? 'active' : ''}`}
                 onClick={closeMobileMenu}
               >
                 <span className="nav__cta-icon">↗</span> GET IN TOUCH

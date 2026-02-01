@@ -148,8 +148,8 @@
 }
 
 .certification__card:hover .certification__card-link {
-  background: #000;
-  border-color: #000;
+  background: #314ad5d6;
+  border-color: #fff;
   color: #fff;
 }
 

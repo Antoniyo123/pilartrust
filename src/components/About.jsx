@@ -22,7 +22,7 @@ const About = () => {
           </div>
           <div className="about__column">
             <div className="about__image-small">
-              <img src={require("../img/sample.jpeg")} alt="ISO Certification" />
+              <img src={require("../img/team.jpg")} alt="ISO Certification" />
             </div>
           </div>
         </div>

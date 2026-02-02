@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import './GetInTouch.css';
 
 const GetInTouchPage = () => {
@@ -13,6 +14,10 @@ const GetInTouchPage = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  // Scroll animations
+  const [heroRef, heroVisible] = useScrollAnimation({ threshold: 0.2 });
+  const [contentRef, contentVisible] = useScrollAnimation({ threshold: 0.1 });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,29 +57,33 @@ const GetInTouchPage = () => {
   return (
     <div className="page-container">
       {/* Hero Section */}
-      <section className="hero-section">
+      <section 
+        ref={heroRef}
+        className={`hero-section animate-on-scroll ${heroVisible ? 'visible' : ''}`}
+      >
         <div className="hero-grid">
           <div className="hero-content">
-            <div className="hero-badge">Let's Connect</div>
-            <h1 className="hero-title">
+            <div className="hero-badge animate-fade-in stagger-1">Let's Connect</div>
+            <h1 className="hero-title animate-fade-in-up stagger-2">
               Get Your ISO <span className="highlight">Certification</span>
             </h1>
-            <p className="hero-description">
+            <p className="hero-description animate-fade-in-up stagger-3">
               Partner with us to achieve international standards certification. 
               Our expert team is ready to guide you through every step of the certification process.
             </p>
           </div>
-          
-         
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="content-section">
+      <section 
+        ref={contentRef}
+        className={`content-section animate-on-scroll ${contentVisible ? 'visible' : ''}`}
+      >
         <div className="content-wrapper">
           {/* Left Column - Info */}
           <div className="info-column">
-            <div className="info-block">
+            <div className="info-block animate-fade-in-up stagger-1">
               <h2 className="section-title">Why Choose Pilar</h2>
               <p className="section-description">
                 We're more than just a certification body. We're your strategic partner in achieving 
@@ -83,7 +92,7 @@ const GetInTouchPage = () => {
             </div>
 
             <div className="features-list">
-              <div className="feature-item">
+              <div className="feature-item animate-slide-in-left stagger-2">
                 <div className="feature-number">01</div>
                 <div className="feature-content">
                   <h3 className="feature-title">Proven Expertise</h3>
@@ -91,7 +100,7 @@ const GetInTouchPage = () => {
                 </div>
               </div>
 
-              <div className="feature-item">
+              <div className="feature-item animate-slide-in-left stagger-3">
                 <div className="feature-number">02</div>
                 <div className="feature-content">
                   <h3 className="feature-title">Fast Processing</h3>
@@ -99,7 +108,7 @@ const GetInTouchPage = () => {
                 </div>
               </div>
 
-              <div className="feature-item">
+              <div className="feature-item animate-slide-in-left stagger-4">
                 <div className="feature-number">03</div>
                 <div className="feature-content">
                   <h3 className="feature-title">Full Support</h3>
@@ -108,7 +117,7 @@ const GetInTouchPage = () => {
               </div>
             </div>
 
-            <div className="contact-info">
+            <div className="contact-info animate-fade-in-up stagger-5">
               <div className="contact-item">
                 <div className="contact-label">Email</div>
                 <div className="contact-value">info@pilar-iso.com</div>
@@ -127,7 +136,7 @@ const GetInTouchPage = () => {
           </div>
 
           {/* Right Column - Form */}
-          <div className="form-column">
+          <div className="form-column animate-slide-in-right stagger-2">
             <div className="form-card">
               <div className="form-header">
                 <h2 className="form-title">Request Consultation</h2>

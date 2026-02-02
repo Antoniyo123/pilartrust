@@ -1,22 +1,23 @@
+/* Global Font Configuration */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
+  font-family: Georgia, serif;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  color: #1a1a1a;
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+  font-family: Georgia, serif;
 }
 
-.app {
-  width: 100%;
-  overflow-x: hidden;
+/* Ensure all text elements use Georgia */
+h1, h2, h3, h4, h5, h6,
+p, span, a, button, input, textarea, select,
+div, section, article, aside, nav, header, footer,
+ul, ol, li, dl, dt, dd,
+table, th, td, caption,
+label, legend, fieldset {
+  font-family: Georgia, serif;
+}
+
+/* SVG text elements */
+text, tspan {
+  font-family: Georgia, serif;
 }

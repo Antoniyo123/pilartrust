@@ -96,7 +96,7 @@ const AboutUs = () => {
         <div className="container">
           <div className="hero-grid">
             <div className="hero-left">
-              <h1 className="hero-title">
+              <h1 className="hero-title-about">
                 Governance, Risk and Compliance
              <em>Integration Solution</em>
               </h1>
@@ -106,11 +106,11 @@ const AboutUs = () => {
             </div>
             
             <div className="hero-middle">
-              <p className="hero-description">
+              <p className="hero-description-about">
                 As a full-service global talent management business, we provide more than just standard agency services, 
                 specialising in growing international brands and reach for top-tier talent.
               </p>
-              <p className="hero-description">
+              <p className="hero-description-about">
                 We pride ourselves on our tailored approach, using our deep understanding of audiences, culture, 
                 industry relationships, and expert teams to deliver world-class service that helps clients realise their ambitions.
               </p>

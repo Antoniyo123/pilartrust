@@ -7,7 +7,6 @@ import AboutPage from './components/About/AboutUs';
 import Footer from './components/footer';
 import ServicesPage from './components/Services/ServicesPage';
 import GetInTouchPage from './components/GetInTouch/GetInTouch';
-// import LoadingScreen from './components/LoadingScreen';
 import LoadingProgressBar from './components/LoadingProgressBar';
 
 import './styles/global.css';
@@ -15,26 +14,39 @@ import './styles/global.css';
 const PageWrapper = ({ children }) => {
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    // Tampilkan loading saat route berubah
+    // Start transition
+    setIsTransitioning(true);
     setIsLoading(true);
 
-    // Simulasi loading time (minimal 500ms untuk smooth transition)
-    const timer = setTimeout(() => {
+    // Simulasi loading time
+    const loadingTimer = setTimeout(() => {
       setIsLoading(false);
-      // Scroll to top setelah page load
-      window.scrollTo(0, 0);
     }, 500);
 
-    return () => clearTimeout(timer);
+    // End transition after content loads
+    const transitionTimer = setTimeout(() => {
+      setIsTransitioning(false);
+      window.scrollTo(0, 0);
+    }, 600);
+
+    return () => {
+      clearTimeout(loadingTimer);
+      clearTimeout(transitionTimer);
+    };
   }, [location.pathname]);
 
   if (isLoading) {
-  return <LoadingProgressBar />;
-}
+    return <LoadingProgressBar />;
+  }
 
-  return children;
+  return (
+    <div className={`page-transition ${isTransitioning ? 'transitioning' : 'active'}`}>
+      {children}
+    </div>
+  );
 };
 
 const App = () => {

@@ -403,17 +403,6 @@
   color: #000;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Responsive Design */
 @media (max-width: 1200px) {
   .hero-section {
@@ -600,5 +589,349 @@
   .form-submit {
     padding: 0.9rem 1.5rem;
     font-size: 0.85rem;
+  }
+}
+
+/* Animation Styles for GetInTouch Page */
+
+/* Initial states for sections */
+.hero-section,
+.content-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hero-section.visible,
+.content-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero Section Animations */
+.hero-badge,
+.hero-title,
+.hero-description {
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.hero-section.visible .hero-badge,
+.hero-section.visible .hero-title,
+.hero-section.visible .hero-description {
+  animation-name: fadeInUp;
+  animation-duration: 0.8s;
+  animation-timing-function: ease;
+}
+
+/* Content Section Animations */
+.info-block,
+.feature-item,
+.contact-info,
+.form-column {
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.content-section.visible .info-block {
+  animation-name: fadeInUp;
+  animation-duration: 0.8s;
+  animation-timing-function: ease;
+  animation-delay: 0.1s;
+}
+
+.content-section.visible .feature-item {
+  animation-name: slideInLeft;
+  animation-duration: 0.8s;
+  animation-timing-function: ease;
+}
+
+.content-section.visible .contact-info {
+  animation-name: fadeInUp;
+  animation-duration: 0.8s;
+  animation-timing-function: ease;
+  animation-delay: 0.5s;
+}
+
+.content-section.visible .form-column {
+  animation-name: slideInRight;
+  animation-duration: 0.8s;
+  animation-timing-function: ease;
+  animation-delay: 0.2s;
+}
+
+/* Form Elements Animation */
+.form-card {
+  transform-origin: top;
+}
+
+.content-section.visible .form-card {
+  animation: scaleIn 0.6s ease 0.3s forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Stagger delays */
+.stagger-1 { animation-delay: 0.1s !important; }
+.stagger-2 { animation-delay: 0.2s !important; }
+.stagger-3 { animation-delay: 0.3s !important; }
+.stagger-4 { animation-delay: 0.4s !important; }
+.stagger-5 { animation-delay: 0.5s !important; }
+.stagger-6 { animation-delay: 0.6s !important; }
+
+/* Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Form input focus animations */
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  animation: inputFocus 0.3s ease;
+}
+
+@keyframes inputFocus {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Submit button animation */
+.form-submit {
+  position: relative;
+  overflow: hidden;
+}
+
+.form-submit::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.form-submit:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.form-submit.submitting::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Success message enhanced animation */
+.success-message {
+  animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 100px;
+  }
+}
+
+.success-icon {
+  animation: checkmark 0.6s ease 0.2s both;
+}
+
+@keyframes checkmark {
+  0% {
+    transform: scale(0) rotate(-45deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(0deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Feature numbers animation */
+.content-section.visible .feature-number {
+  animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Contact info items stagger */
+.content-section.visible .contact-item:nth-child(1) {
+  animation: fadeIn 0.6s ease 0.6s both;
+}
+
+.content-section.visible .contact-item:nth-child(2) {
+  animation: fadeIn 0.6s ease 0.7s both;
+}
+
+.content-section.visible .contact-item:nth-child(3) {
+  animation: fadeIn 0.6s ease 0.8s both;
+}
+
+/* Hover enhancement for animated elements */
+.feature-item {
+  transition: transform 0.3s ease;
+}
+
+.content-section.visible .feature-item:hover {
+  transform: translateX(8px);
+}
+
+.contact-info {
+  transition: transform 0.3s ease;
+}
+
+.content-section.visible .contact-info:hover {
+  transform: translateY(-4px);
+}
+
+/* Responsive adjustments for animations */
+@media (max-width: 768px) {
+  .hero-section,
+  .content-section {
+    transform: translateY(20px);
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(0) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) translateY(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(0) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) translateY(0);
+    }
+  }
+
+  /* Disable hover animations on mobile */
+  .content-section.visible .feature-item:hover {
+    transform: none;
+  }
+
+  .content-section.visible .contact-info:hover {
+    transform: none;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .hero-section,
+  .content-section,
+  .hero-badge,
+  .hero-title,
+  .hero-description,
+  .info-block,
+  .feature-item,
+  .contact-info,
+  .form-column {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

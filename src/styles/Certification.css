@@ -1,6 +1,12 @@
+/* Font Import */
+* {
+  font-family: Georgia, serif;
+}
+
 .certification {
   padding: 5rem 0;
   background: #fff;
+  font-family: Georgia, serif;
 }
 
 .certification__container {
@@ -149,12 +155,266 @@
 
 .certification__card:hover .certification__card-link {
   background: #314ad5d6;
-  border-color: #fff;
+  border-color: #314ad5d6;
   color: #fff;
 }
 
 .certification__card:hover .certification__card-link svg {
   transform: translate(2px, -2px);
+}
+
+/* Modal Styles */
+.certification__modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.certification__modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.certification__modal {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9) translateY(20px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.certification__modal.active {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Modal Header */
+.certification__modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem 2rem 1.5rem;
+  border-bottom: 1px solid #e5e5e5;
+  flex-shrink: 0;
+}
+
+.certification__modal-title-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+
+.certification__modal-number {
+  font-size: 3rem;
+  font-weight: 200;
+  color: #000;
+  line-height: 1;
+  letter-spacing: -1px;
+  flex-shrink: 0;
+}
+
+.certification__modal-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.certification__modal-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.certification__modal-timeline {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #666;
+  letter-spacing: 0.3px;
+}
+
+.certification__modal-close {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  color: #666;
+}
+
+.certification__modal-close:hover {
+  background: #f5f5f5;
+  border-color: #000;
+  color: #000;
+}
+
+/* Modal Image */
+.certification__modal-image {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.certification__modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Modal Content */
+.certification__modal-content {
+  padding: 2rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.certification__modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.certification__modal-content::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.certification__modal-content::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.certification__modal-content::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+.certification__modal-section {
+  margin-bottom: 2rem;
+}
+
+.certification__modal-section:last-child {
+  margin-bottom: 0;
+}
+
+.certification__modal-section-title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: #000;
+  margin: 0 0 1rem 0;
+  text-transform: uppercase;
+}
+
+.certification__modal-text {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+}
+
+.certification__modal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.certification__modal-list li {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #333;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.certification__modal-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Modal Footer */
+.certification__modal-footer {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem 2rem 2rem;
+  border-top: 1px solid #e5e5e5;
+  flex-shrink: 0;
+}
+
+.certification__modal-button {
+  flex: 1;
+  padding: 0.9rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  letter-spacing: 0.3px;
+  border: none;
+}
+
+.certification__modal-button--secondary {
+  background: transparent;
+  border: 1px solid #e5e5e5;
+  color: #666;
+}
+
+.certification__modal-button--secondary:hover {
+  background: #f5f5f5;
+  border-color: #000;
+  color: #000;
+}
+
+.certification__modal-button--primary {
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+}
+
+.certification__modal-button--primary:hover {
+  background: #333;
+  border-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Responsive Design */
@@ -319,6 +579,85 @@
     width: 17px;
     height: 17px;
   }
+
+  /* Modal responsive */
+  .certification__modal-overlay {
+    padding: 1rem;
+  }
+
+  .certification__modal {
+    border-radius: 12px;
+  }
+
+  .certification__modal-header {
+    padding: 1.5rem 1.5rem 1.2rem;
+  }
+
+  .certification__modal-title-wrapper {
+    gap: 1rem;
+  }
+
+  .certification__modal-number {
+    font-size: 2.5rem;
+  }
+
+  .certification__modal-title {
+    font-size: 1.5rem;
+  }
+
+  .certification__modal-timeline {
+    font-size: 0.82rem;
+  }
+
+  .certification__modal-close {
+    width: 36px;
+    height: 36px;
+  }
+
+  .certification__modal-close svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .certification__modal-image {
+    height: 200px;
+  }
+
+  .certification__modal-content {
+    padding: 1.5rem;
+  }
+
+  .certification__modal-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .certification__modal-section-title {
+    font-size: 0.72rem;
+    margin: 0 0 0.8rem 0;
+  }
+
+  .certification__modal-text {
+    font-size: 0.9rem;
+  }
+
+  .certification__modal-list {
+    gap: 0.7rem;
+  }
+
+  .certification__modal-list li {
+    font-size: 0.9rem;
+    padding-left: 1.3rem;
+  }
+
+  .certification__modal-footer {
+    padding: 1.2rem 1.5rem 1.5rem;
+    gap: 0.8rem;
+  }
+
+  .certification__modal-button {
+    padding: 0.85rem 1.2rem;
+    font-size: 0.88rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -377,6 +716,101 @@
   }
   
   .certification__card-link svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Modal responsive */
+  .certification__modal-overlay {
+    padding: 0.8rem;
+  }
+
+  .certification__modal {
+    border-radius: 10px;
+  }
+
+  .certification__modal-header {
+    padding: 1.2rem 1.2rem 1rem;
+  }
+
+  .certification__modal-title-wrapper {
+    gap: 0.8rem;
+    flex: 1;
+  }
+
+  .certification__modal-number {
+    font-size: 2rem;
+  }
+
+  .certification__modal-title {
+    font-size: 1.3rem;
+  }
+
+  .certification__modal-meta {
+    margin-top: 0.4rem;
+  }
+
+  .certification__modal-timeline {
+    font-size: 0.8rem;
+  }
+
+  .certification__modal-close {
+    width: 34px;
+    height: 34px;
+  }
+
+  .certification__modal-close svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .certification__modal-image {
+    height: 180px;
+  }
+
+  .certification__modal-content {
+    padding: 1.2rem;
+  }
+
+  .certification__modal-section {
+    margin-bottom: 1.3rem;
+  }
+
+  .certification__modal-section-title {
+    font-size: 0.7rem;
+    margin: 0 0 0.7rem 0;
+  }
+
+  .certification__modal-text {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .certification__modal-list {
+    gap: 0.6rem;
+  }
+
+  .certification__modal-list li {
+    font-size: 0.88rem;
+    padding-left: 1.2rem;
+  }
+
+  .certification__modal-list li::before {
+    font-size: 1.1rem;
+  }
+
+  .certification__modal-footer {
+    flex-direction: column;
+    padding: 1rem 1.2rem 1.2rem;
+    gap: 0.7rem;
+  }
+
+  .certification__modal-button {
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .certification__modal-button svg {
     width: 16px;
     height: 16px;
   }

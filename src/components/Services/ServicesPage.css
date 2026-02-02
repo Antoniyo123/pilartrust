@@ -1081,3 +1081,47 @@
     font-size: 1rem;
   }
 }
+
+/* Untuk Hero Section */
+.services-hero {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.services-hero-left > * {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.services-hero-left .hero-label {
+  animation-delay: 0.1s;
+}
+
+.services-hero-left .services-hero-title {
+  animation-delay: 0.2s;
+}
+
+.services-hero-right {
+  opacity: 0;
+  animation: slideInRight 0.8s ease 0.3s forwards;
+}
+
+/* Untuk Overview Section */
+.services-overview {
+  opacity: 0;
+  animation: fadeIn 0.8s ease 0.4s forwards;
+}
+
+.overview-item {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.overview-item:nth-child(1) { animation-delay: 0.5s; }
+.overview-item:nth-child(2) { animation-delay: 0.6s; }
+.overview-item:nth-child(3) { animation-delay: 0.7s; }
+
+/* Untuk Detail Section */
+.services-detail {
+  opacity: 0;
+  animation: fadeIn 0.8s ease 0.6s forwards;
+}

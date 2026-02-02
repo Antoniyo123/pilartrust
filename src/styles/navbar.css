@@ -8,6 +8,16 @@
   padding: 1rem 0;
 }
 
+.nav__cta-icon.arrow {
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid currentColor;
+  border-top: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  margin-right: 8px;
+}
+
+
 .nav--scrolled {
   backdrop-filter: blur(30px);
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);

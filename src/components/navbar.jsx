@@ -201,15 +201,7 @@ const Navbar = () => {
                 SERVICES
               </Link>
             </li>
-            <li className="nav__item">
-              <a 
-                href="/#certification" 
-                className={`nav__link ${isActive('/', 'certification') ? 'active' : ''}`}
-                onClick={(e) => handleSmoothScroll(e, '#certification', 'certification')}
-              >
-                CERTIFICATION
-              </a>
-            </li>
+           
             <li className="nav__item">
               <Link 
                 to="/about" 
@@ -237,7 +229,8 @@ const Navbar = () => {
                 className={`nav__cta ${isActive('/contact') ? 'active' : ''}`}
                 onClick={closeMobileMenu}
               >
-                <span className="nav__cta-icon">↗</span> GET IN TOUCH
+                <span className="nav__cta-icon arrow"></span>
+GET IN TOUCH
               </Link>
             </li>
           </ul>

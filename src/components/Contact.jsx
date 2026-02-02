@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../styles/Contact.css';
 
 const Contact = () => {
+    const [selectedService] = useState(null);
+  
   // Brands/Companies that have been handled
   const brands = [
     'PT ASTRA INTERNATIONAL',
@@ -20,6 +22,12 @@ const Contact = () => {
     'PT WIJAYA KARYA',
     'PT ADHI KARYA'
   ];
+
+  const handleServicePage = (serviceId) => {
+    // Navigate to service detail page
+    window.location.href = `/getintouch`;
+    // Or if using React Router: navigate(`/services/${serviceId}`);
+  };
 
   return (
     <section className="contact" id="contact">
@@ -57,9 +65,9 @@ const Contact = () => {
               </div>
               <h3 className="contact__card-label">Office Address</h3>
               <p className="contact__card-info">
-                Gedung Menara Jamsostek<br />
-                Jl. Gatot Subroto No.38<br />
-                Jakarta Selatan 12710
+                Ruko Tiara Buncit Blok D12,<br />
+                Jl. Kemang Utara IX, Pancoran, Jakarta Selatan<br />
+                12760
               </p>
               <button className="contact__card-button">
                 Get Directions 
@@ -78,8 +86,8 @@ const Contact = () => {
               </div>
               <h3 className="contact__card-label">Email</h3>
               <p className="contact__card-info">
-                info@pilar-iso.com<br />
-                certification@pilar-iso.com
+                info@pilartrust.com<br />
+                
               </p>
               <button className="contact__card-button">
                 Send Email 
@@ -115,7 +123,8 @@ const Contact = () => {
               <h3 className="contact__cta-title">Ready to get certified?</h3>
               <p className="contact__cta-text">Schedule a free consultation with our ISO experts today</p>
             </div>
-            <button className="contact__cta-button">
+            <button className="contact__cta-button"
+            onClick={() => handleServicePage}>
               Book Consultation
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7"/>

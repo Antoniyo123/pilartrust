@@ -48,12 +48,12 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="footer__bottom">
           <p className="footer__info">
-            Menara Jamsostek, Jakarta Selatan 12710<br />
-            <a href="mailto:info@pilar-iso.com">info@pilar-iso.com</a> • <a href="tel:+622152524567">+62 21 5252 4567</a>
+            Ruko Tiara Buncit Blok D12, Jl. Kemang Utara IX, Pancoran, Jakarta Selatan 12760<br />
+            <a href="mailto:info@pilar-iso.com">info@pilartrust.com</a> • <a href="tel:+622152524567">+62 21 5252 4567</a>
           </p>
 
           <p className="footer__copyright">
-            © 2026 Pilar ISO
+            © 2026 Pilar Trust
           </p>
         </div>
       </div>

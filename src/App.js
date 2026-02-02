@@ -8,6 +8,8 @@ import Footer from './components/footer';
 import ServicesPage from './components/Services/ServicesPage';
 import GetInTouchPage from './components/GetInTouch/GetInTouch';
 import LoadingProgressBar from './components/LoadingProgressBar';
+import Preloader from './components/Preloader';
+import './styles/Preloader.css';
 
 import './styles/global.css';
 
@@ -50,6 +52,20 @@ const PageWrapper = ({ children }) => {
 };
 
 const App = () => {
+  const [showPreloader, setShowPreloader] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPreloader(false);
+    }, 2000); // durasi preloader
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (showPreloader) {
+    return <Preloader />;
+  }
+
   return (
     <Router>
       <div className="app">
@@ -67,5 +83,6 @@ const App = () => {
     </Router>
   );
 };
+
 
 export default App;

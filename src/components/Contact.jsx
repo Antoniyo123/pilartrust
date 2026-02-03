@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import '../styles/Contact.css';
 
 const Contact = () => {
-    const [selectedService] = useState(null);
   
   // Brands/Companies that have been handled
   const brands = [

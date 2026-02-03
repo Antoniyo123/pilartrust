@@ -13,7 +13,7 @@ const Home = () => {
     <section className="hero" id="home">
       <div className="hero__background">
         <video autoPlay loop muted playsInline>
-          <source src={require('../video/teaser2.mp4')} type="video/mp4" />
+          <source src={require('../video/city.mp4')} type="video/mp4" />
         </video>
       </div>
       <div className="hero__overlay"></div>

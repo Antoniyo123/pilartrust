@@ -1,3 +1,8 @@
+/* Font Import */
+* {
+  font-family: Georgia, serif;
+}
+
 .hero {
   position: relative;
   min-height: 100vh;
@@ -5,6 +10,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  font-family: Georgia, serif;
 }
 
 .hero__background {
@@ -113,12 +119,18 @@
   color: #fff;
   border: 2px solid #fff;
   animation: heroFadeUp 1s ease 0.5s backwards;
+  border-radius: 4px;
 }
 
 .hero__button:hover {
   background: transparent;
   color: #fff;
   transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(49, 74, 213, 0.3);
+}
+
+.hero__button:active {
+  transform: translateY(-1px);
 }
 
 .hero__scroll {
@@ -138,12 +150,17 @@
   transition: all 0.3s ease;
   animation: heroFadeUp 1s ease 0.6s backwards, bounce 2s ease-in-out 1s infinite;
   padding: 0;
+  z-index: 3;
 }
 
 .hero__scroll:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: #fff;
-  transform: translateX(-50%) translateY(-3px);
+  animation: heroFadeUp 1s ease 0.6s backwards;
+}
+
+.hero__scroll:active {
+  transform: translateX(-50%) scale(0.95);
 }
 
 .hero__scroll svg {

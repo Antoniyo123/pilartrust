@@ -94,11 +94,14 @@
 /* Services Detail - More Compact */
 /* Services Detail - Minimalist Design */
 .services-detail {
-  padding: 100px 0;
+  /* padding: 100px 0; */
   background: #fff;
 }
 
 .services-detail-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   margin-bottom: 60px;
 }
@@ -587,7 +590,7 @@
   grid-template-columns: 1fr;
   gap: 1px;
   background: #e0e0e0;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #314ad5d6;
 }
 
 .why-item {
@@ -1141,6 +1144,9 @@
 .client-portfolio-header {
   text-align: center;
   margin-bottom: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .client-portfolio-sub {
@@ -1261,7 +1267,7 @@
 .client-display-number {
   font-size: 3.5rem;
   font-weight: 200;
-  color: #1a1a1a;
+  color: #314ad5d6;
   line-height: 1;
   min-width: 72px;
 }
@@ -1340,7 +1346,7 @@
 .client-logo-placeholder {
   width: 52px;
   height: 52px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #314ad5d6;
   display: flex;
   align-items: center;
   justify-content: center;

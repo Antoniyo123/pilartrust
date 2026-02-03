@@ -1,8 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import '../styles/Contact.css';
 
 const Contact = () => {
-  
+  // state sekarang BENAR-BENAR dipakai
+  const [selectedService, setSelectedService] = useState(null);
+
+  const handleServicePage = (serviceId = 'consultation') => {
+    setSelectedService(serviceId);
+    window.location.href = '/getintouch';
+  };
+
   // Brands/Companies that have been handled
   const brands = [
     'PT ASTRA INTERNATIONAL',
@@ -22,27 +29,25 @@ const Contact = () => {
     'PT ADHI KARYA'
   ];
 
-  const handleServicePage = (serviceId) => {
-    // Navigate to service detail page
-    window.location.href = `/getintouch`;
-    // Or if using React Router: navigate(`/services/${serviceId}`);
-  };
-
   return (
     <section className="contact" id="contact">
       <div className="contact__container">
+
         {/* Header */}
         <div className="contact__header">
           <h2 className="contact__title">Get Your ISO Certification</h2>
-          <p className="contact__subtitle">Contact us today for a free consultation</p>
+          <p className="contact__subtitle">
+            Contact us today for a free consultation
+          </p>
         </div>
 
         {/* Running Text - Trusted Companies */}
         <div className="contact__brands">
-          <div className="contact__brands-label">Trusted by Leading Companies</div>
+          <div className="contact__brands-label">
+            Trusted by Leading Companies
+          </div>
           <div className="contact__brands-wrapper">
             <div className="contact__brands-track">
-              {/* Duplicate brands for seamless loop */}
               {[...brands, ...brands].map((brand, index) => (
                 <div key={index} className="contact__brand-item">
                   {brand}
@@ -51,10 +56,12 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="contact__content">
           {/* Contact Cards */}
           <div className="contact__grid">
+
+            {/* Address */}
             <div className="contact__card">
               <div className="contact__card-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -68,14 +75,9 @@ const Contact = () => {
                 Jl. Kemang Utara IX, Pancoran, Jakarta Selatan<br />
                 12760
               </p>
-              <button className="contact__card-button">
-                Get Directions 
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M7 17L17 7M7 7h10v10"/>
-                </svg>
-              </button>
             </div>
 
+            {/* Email */}
             <div className="contact__card">
               <div className="contact__card-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -85,17 +87,11 @@ const Contact = () => {
               </div>
               <h3 className="contact__card-label">Email</h3>
               <p className="contact__card-info">
-                info@pilartrust.com<br />
-                
+                info@pilartrust.com
               </p>
-              <button className="contact__card-button">
-                Send Email 
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M7 17L17 7M7 7h10v10"/>
-                </svg>
-              </button>
             </div>
 
+            {/* Phone */}
             <div className="contact__card">
               <div className="contact__card-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -107,29 +103,28 @@ const Contact = () => {
                 +62 21 5252 4567<br />
                 +62 812 3456 7890
               </p>
-              <button className="contact__card-button">
-                Call Now 
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M7 17L17 7M7 7h10v10"/>
-                </svg>
-              </button>
             </div>
           </div>
 
-          {/* CTA Section */}
+          {/* CTA */}
           <div className="contact__cta">
             <div className="contact__cta-content">
               <h3 className="contact__cta-title">Ready to get certified?</h3>
-              <p className="contact__cta-text">Schedule a free consultation with our ISO experts today</p>
+              <p className="contact__cta-text">
+                Schedule a free consultation with our ISO experts today
+              </p>
             </div>
-            <button className="contact__cta-button"
-            onClick={() => handleServicePage}>
+            <button
+              className="contact__cta-button"
+              onClick={() => handleServicePage('iso-consultation')}
+            >
               Book Consultation
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
           </div>
+
         </div>
       </div>
     </section>

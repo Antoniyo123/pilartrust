@@ -2,99 +2,129 @@ import React, { useState, useEffect } from 'react';
 import '../styles/Preloader.css';
 
 const Preloader = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [typedText, setTypedText] = useState('');
-  const fullText = 'PILAR';
+  // 6 distinct phases for precise timing control
+  // logo → lines → letters → tagline → hold → exit → done
+  const [phase, setPhase] = useState('logo');
 
   useEffect(() => {
-    // Typing animation
-    let currentIndex = 0;
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setTypedText(fullText.slice(0, currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 200); // 200ms per character
-
-    // Total animation duration: typing (1s) + hold (0.5s) + fade out (0.5s)
-    const hideTimeout = setTimeout(() => {
-      setIsLoading(false);
-      document.body.style.overflow = 'unset';
-    }, 2500);
-
-    // Prevent scrolling during preloader
     document.body.style.overflow = 'hidden';
 
+    const timers = [
+      // logo is immediate — CSS keyframe handles the 0.7s blur-in
+      [600,  () => setPhase('lines')],      // sweep lines slide in
+      [700, () => setPhase('letters')],     // P I L A R drop staggered
+      [800, () => setPhase('tagline')],     // tagline + progress appear
+      [800, () => setPhase('hold')],        // idle: particles float, shimmer loops       // white wipe slides down
+      [5000, () => {                         // fully gone
+        setPhase('done');
+        document.body.style.overflow = 'unset';
+      }],
+    ];
+
+    const ids = timers.map(([ms, fn]) => setTimeout(fn, ms));
+
     return () => {
-      clearInterval(typingInterval);
-      clearTimeout(hideTimeout);
+      ids.forEach(clearTimeout);
       document.body.style.overflow = 'unset';
     };
   }, []);
 
-  if (!isLoading) return null;
+  if (phase === 'done') return null;
+
+  // ── helper: returns true if current phase is one of the given list ──
+  const after = (...phases) => phases.includes(phase);
+
+  const letters = ['P', 'I', 'L', 'A', 'R'];
+
+  // ── 12 floating particle positions (static layout, CSS animates them) ──
+  const particles = [
+    { top: '12%',  left: '8%',  size: 3, delay: 0 },
+    { top: '18%',  left: '85%', size: 2, delay: 0.4 },
+    { top: '30%',  left: '5%',  size: 4, delay: 0.8 },
+    { top: '25%',  left: '72%', size: 2, delay: 1.2 },
+    { top: '70%',  left: '10%', size: 3, delay: 0.6 },
+    { top: '75%',  left: '88%', size: 2, delay: 1.0 },
+    { top: '82%',  left: '22%', size: 2, delay: 1.4 },
+    { top: '60%',  left: '78%', size: 3, delay: 0.2 },
+    { top: '45%',  left: '3%',  size: 2, delay: 0.9 },
+    { top: '40%',  left: '92%', size: 3, delay: 0.5 },
+    { top: '88%',  left: '55%', size: 2, delay: 1.1 },
+    { top: '10%',  left: '45%', size: 2, delay: 0.7 },
+  ];
 
   return (
-    <div className={`preloader ${!isLoading ? 'preloader--hidden' : ''}`}>
+    <div className={`preloader preloader--${phase}`}>
+
+      {/* ── white wipe overlay ── */}
+      <div className="preloader__wipe" />
+
+      {/* ── floating particles (mount once lines phase starts) ── */}
+      {after('lines','letters','tagline','hold','exit') && (
+        <div className="preloader__particles">
+          {particles.map((p, i) => (
+            <div
+              key={i}
+              className="preloader__particle"
+              style={{
+                top: p.top,
+                left: p.left,
+                width: p.size,
+                height: p.size,
+                animationDelay: `${p.delay}s`,
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* ── horizontal sweep lines ── */}
+      <div className={`preloader__lines ${after('lines','letters','tagline','hold','exit') ? 'preloader__lines--visible' : ''}`}>
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="preloader__line" style={{ animationDelay: `${i * 0.07}s` }} />
+        ))}
+      </div>
+
+      {/* ── main content ── */}
       <div className="preloader__content">
-        {/* Logo Circle */}
-        <div className="preloader__logo">
-          <svg viewBox="0 0 100 100" className="preloader__logo-svg">
-            {/* Outer rotating circle */}
-            <circle
-              cx="50"
-              cy="50"
-              r="45"
-              fill="none"
-              stroke="#314ad5d6"
-              strokeWidth="0.5"
-              className="preloader__circle preloader__circle--outer"
-            />
-            
-            {/* Inner rotating circle */}
-            <circle
-              cx="50"
-              cy="50"
-              r="35"
-              fill="none"
-              stroke="#000"
-              strokeWidth="0.5"
-              className="preloader__circle preloader__circle--inner"
-              strokeDasharray="220"
-              strokeDashoffset="220"
-            />
-            
-            {/* Center P letter */}
-            <text
-              x="50"
-              y="50"
-              textAnchor="middle"
-              dominantBaseline="central"
-              className="preloader__logo-letter"
-              fill="#314ad5d6"
+
+        {/* Logo + shimmer + glow */}
+        <div className="preloader__logo-wrap">
+          <div className="preloader__glow" />
+          <img
+            src={require('../img/logo3.png')}
+            alt="PIS Logo"
+            className="preloader__logo"
+          />
+          {/* shimmer sweep — loops continuously during hold phase */}
+          <div className={`preloader__shimmer ${after('hold','exit') ? 'preloader__shimmer--active' : ''}`} />
+        </div>
+
+        {/* Staggered letters + blinking cursor */}
+        <div className={`preloader__text ${after('letters','tagline','hold','exit') ? 'preloader__text--visible' : ''}`}>
+          {letters.map((letter, i) => (
+            <span
+              key={i}
+              className="preloader__letter"
+              style={{ animationDelay: `${i * 0.15}s` }}
             >
-              P
-            </text>
-          </svg>
+              {letter}
+            </span>
+          ))}
+          <span className={`preloader__cursor ${after('tagline','hold','exit') ? 'preloader__cursor--hide' : ''}`}>|</span>
         </div>
 
-        {/* Typing Text */}
-        <div className="preloader__text">
-          <span className="preloader__typed">{typedText}</span>
-          <span className="preloader__cursor">|</span>
-        </div>
-
-        {/* Tagline */}
-        <div className="preloader__tagline">
-          ISO Certification Excellence
+        {/* Tagline with side-lines */}
+        <div className={`preloader__tagline ${after('tagline','hold','exit') ? 'preloader__tagline--visible' : ''}`}>
+          <span className="preloader__tagline-line" />
+          <span className="preloader__tagline-text">ISO Certification Excellence</span>
+          <span className="preloader__tagline-line" />
         </div>
 
         {/* Progress bar */}
-        <div className="preloader__progress">
-          <div className="preloader__progress-bar"></div>
+        <div className={`preloader__progress ${after('tagline','hold','exit') ? 'preloader__progress--visible' : ''}`}>
+          <div className={`preloader__progress-bar ${after('hold','exit') ? 'preloader__progress-bar--full' : ''}`} />
         </div>
+
       </div>
     </div>
   );

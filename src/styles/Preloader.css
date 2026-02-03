@@ -1,272 +1,389 @@
-/* Preloader */
+/* ═══════════════════════════════════════════════════════
+   PRELOADER  —  dark cinematic reveal
+   phases: logo → lines → letters → tagline → hold → exit
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Base ── */
 .preloader {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: #fff;
+  inset: 0;
+  z-index: 9999;
+  background: #0a0a0a;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-  font-family: Georgia, serif;
+  overflow: hidden;
 }
 
-.preloader--hidden {
-  opacity: 0;
-  visibility: hidden;
+/* ════════════════════════════════════════
+   WHITE WIPE  — slides down on exit phase
+   ════════════════════════════════════════ */
+.preloader__wipe {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 10;
+  transition: top 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.preloader--exit .preloader__wipe {
+  top: 0;
+}
+
+/* ════════════════════════════════════════
+   FLOATING PARTICLES
+   ════════════════════════════════════════ */
+.preloader__particles {
+  position: absolute;
+  inset: 0;
   pointer-events: none;
+  z-index: 1;
 }
 
+.preloader__particle {
+  position: absolute;
+  border-radius: 50%;
+  background: #314ad5d6;
+  opacity: 0;
+  animation: particleFade 3.5s ease-in-out infinite;
+}
+
+@keyframes particleFade {
+  0%   { opacity: 0;    transform: translateY(0)   scale(0.5); }
+  20%  { opacity: 0.5;  }
+  50%  { opacity: 0.25; transform: translateY(-14px) scale(1); }
+  80%  { opacity: 0.5;  }
+  100% { opacity: 0;    transform: translateY(0)   scale(0.5); }
+}
+
+/* ════════════════════════════════════════
+   HORIZONTAL SWEEP LINES
+   ════════════════════════════════════════ */
+.preloader__lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.preloader__line {
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #314ad5d6 25%,
+    #314ad5d6 75%,
+    transparent 100%
+  );
+  opacity: 0;
+  /* animation is paused until --visible is added */
+  animation: lineSweep 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-play-state: paused;
+}
+
+.preloader__lines--visible .preloader__line {
+  animation-play-state: running;
+}
+
+.preloader__line:nth-child(1) { top: 28%; }
+.preloader__line:nth-child(2) { top: 38%; }
+.preloader__line:nth-child(3) { top: 48%; }
+.preloader__line:nth-child(4) { top: 58%; }
+.preloader__line:nth-child(5) { top: 68%; }
+
+@keyframes lineSweep {
+  0%   { opacity: 0;    transform: translateX(-40px); }
+  35%  { opacity: 0.55; }
+  100% { opacity: 0.13; transform: translateX(0);     }
+}
+
+/* ════════════════════════════════════════
+   CONTENT WRAPPER
+   ════════════════════════════════════════ */
 .preloader__content {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
-  animation: fadeInUp 0.8s ease forwards;
+  gap: 26px;
 }
 
-/* Logo */
-.preloader__logo {
-  width: 120px;
-  height: 120px;
+/* ════════════════════════════════════════
+   LOGO  +  GLOW  +  SHIMMER
+   ════════════════════════════════════════ */
+.preloader__logo-wrap {
   position: relative;
-  animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.preloader__logo-svg {
-  width: 100%;
-  height: 100%;
-}
-
-/* Rotating circles */
-.preloader__circle--outer {
-  transform-origin: center;
-  animation: rotateClockwise 3s linear infinite;
-  opacity: 0.3;
-}
-
-.preloader__circle--inner {
-  transform-origin: center;
-  animation: rotateCounterClockwise 2s linear infinite, fillCircle 2s ease-in-out infinite;
-  opacity: 0.5;
-}
-
-/* Logo letter P */
-.preloader__logo-letter {
-  font-size: 48px;
-  font-weight: 300;
-  letter-spacing: 2px;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* Typing Text */
-.preloader__text {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  height: 60px;
+  justify-content: center;
+  /* clip shimmer to the logo square */
+  width: 140px;
+  height: 140px;
 }
 
-.preloader__typed {
-  font-size: 3rem;
+/* pulsing radial glow behind logo */
+.preloader__glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(49, 74, 213, 0.22) 0%,
+    transparent 70%
+  );
+  animation: glowPulse 2.6s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { transform: scale(1);    opacity: 0.5; }
+  50%      { transform: scale(1.15); opacity: 1;   }
+}
+
+/* the actual logo image */
+.preloader__logo {
+  position: relative;
+  z-index: 1;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  opacity: 0;
+  animation: logoReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes logoReveal {
+  0%   { opacity: 0; transform: scale(0.68) translateY(14px); filter: blur(8px); }
+  55%  { opacity: 1; filter: blur(0);                          }
+  100% { opacity: 1; transform: scale(1)    translateY(0);    filter: blur(0);   }
+}
+
+/* diagonal shimmer that sweeps across the logo area during hold */
+.preloader__shimmer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 4px;
+  /* the actual shine band — starts off-screen left */
+  background: linear-gradient(
+    105deg,
+    transparent       0%,
+    transparent      38%,
+    rgba(255,255,255,0.18) 50%,
+    transparent      62%,
+    transparent     100%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  /* paused until --active */
+  animation: shimmerSlide 2.2s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.preloader__shimmer--active {
+  animation-play-state: running;
+}
+
+@keyframes shimmerSlide {
+  0%   { background-position: -100% 0; }
+  100% { background-position: 200% 0;  }
+}
+
+/* ════════════════════════════════════════
+   STAGGERED LETTER TEXT
+   ════════════════════════════════════════ */
+.preloader__text {
+  display: flex;
+  align-items: baseline;
+  gap: 0.15em;
+  height: 70px; /* reserve so layout doesn't jump */
+}
+
+.preloader__letter {
+  font-family: Georgia, serif;
+  font-size: 3.2rem;
   font-weight: 200;
-  letter-spacing: 8px;
-  color: #000;
+  letter-spacing: 0.14em;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(28px);
+  /* animation paused until parent gets --visible */
+  animation: letterDrop 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-play-state: paused;
+}
+
+.preloader__text--visible .preloader__letter {
+  animation-play-state: running;
+}
+
+/* letter lands with a brief blue glow then fades to white */
+@keyframes letterDrop {
+  0%   { opacity: 0;  transform: translateY(28px); text-shadow: none; }
+  60%  { opacity: 1;  transform: translateY(-3px); text-shadow: 0 0 18px rgba(49,74,213,0.7); }
+  80%  { transform: translateY(0);                 text-shadow: 0 0 8px  rgba(49,74,213,0.35); }
+  100% { opacity: 1;  transform: translateY(0);    text-shadow: none; }
+}
+
+/* blinking cursor */
+.preloader__cursor {
+  font-family: Georgia, serif;
+  font-size: 3.2rem;
+  font-weight: 200;
+  color: #314ad5d6;
+  animation: cursorBlink 0.9s step-end infinite;
+  margin-left: 0.04em;
+  transition: opacity 0.25s;
+}
+
+.preloader__cursor--hide {
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+@keyframes cursorBlink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* ════════════════════════════════════════
+   TAGLINE  +  side decoration lines
+   ════════════════════════════════════════ */
+.preloader__tagline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.preloader__tagline--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.preloader__tagline-text {
+  font-family: Georgia, serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: #666;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
-.preloader__cursor {
-  font-size: 3rem;
-  font-weight: 200;
-  color: #314ad5d6;
-  animation: blink 0.8s step-end infinite;
-  margin-left: -0.3rem;
+/* side accent lines — animate width from 0 when tagline appears */
+.preloader__tagline-line {
+  display: block;
+  width: 0;
+  height: 1px;
+  background: #314ad5d6;
+  opacity: 0.7;
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
 }
 
-/* Tagline */
-.preloader__tagline {
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 2px;
-  color: #666;
-  text-transform: uppercase;
-  opacity: 0;
-  animation: fadeIn 0.5s ease forwards 1s;
+.preloader__tagline--visible .preloader__tagline-line {
+  width: 36px;
 }
 
-/* Progress Bar */
+/* ════════════════════════════════════════
+   PROGRESS BAR
+   ════════════════════════════════════════ */
 .preloader__progress {
-  width: 200px;
+  width: 180px;
   height: 2px;
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
   overflow: hidden;
-  margin-top: 1rem;
   opacity: 0;
-  animation: fadeIn 0.5s ease forwards 1.2s;
+  transition: opacity 0.4s ease;
+}
+
+.preloader__progress--visible {
+  opacity: 1;
 }
 
 .preloader__progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, #314ad5d6, #000);
-  border-radius: 10px;
-  animation: progress 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  transform-origin: left;
+  width: 0%;
+  background: linear-gradient(90deg, #314ad5d6, #5b7fff);
+  transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.preloader__progress-bar--full {
+  width: 100%;
 }
 
-@keyframes scaleIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes rotateClockwise {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes rotateCounterClockwise {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes fillCircle {
-  0%, 100% {
-    stroke-dashoffset: 220;
-  }
-  50% {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(1.05);
-  }
-}
-
-@keyframes blink {
-  0%, 50% {
-    opacity: 1;
-  }
-  51%, 100% {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes progress {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-/* Responsive Design */
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
+  .preloader__logo-wrap,
   .preloader__logo {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
   }
 
-  .preloader__logo-letter {
-    font-size: 42px;
-  }
-
-  .preloader__typed {
-    font-size: 2.5rem;
-    letter-spacing: 6px;
-  }
-
+  .preloader__letter,
   .preloader__cursor {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
   }
 
-  .preloader__tagline {
-    font-size: 0.7rem;
-    letter-spacing: 1.5px;
+  .preloader__text {
+    height: 56px;
+  }
+
+  .preloader__tagline-text {
+    font-size: 0.67rem;
+    letter-spacing: 2.2px;
+  }
+
+  .preloader__tagline--visible .preloader__tagline-line {
+    width: 26px;
   }
 
   .preloader__progress {
-    width: 180px;
+    width: 150px;
   }
 }
 
 @media (max-width: 480px) {
   .preloader__content {
-    gap: 1.5rem;
+    gap: 20px;
   }
 
+  .preloader__logo-wrap,
   .preloader__logo {
-    width: 90px;
-    height: 90px;
+    width: 88px;
+    height: 88px;
   }
 
-  .preloader__logo-letter {
-    font-size: 38px;
-  }
-
-  .preloader__typed {
-    font-size: 2rem;
-    letter-spacing: 5px;
-  }
-
+  .preloader__letter,
   .preloader__cursor {
     font-size: 2rem;
+    letter-spacing: 0.1em;
   }
 
-  .preloader__tagline {
-    font-size: 0.65rem;
-    letter-spacing: 1.2px;
+  .preloader__text {
+    height: 46px;
+  }
+
+  .preloader__tagline-text {
+    font-size: 0.6rem;
+    letter-spacing: 1.8px;
+  }
+
+  .preloader__tagline--visible .preloader__tagline-line {
+    width: 18px;
   }
 
   .preloader__progress {
-    width: 160px;
-    margin-top: 0.8rem;
+    width: 130px;
   }
 }

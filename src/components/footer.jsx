@@ -53,7 +53,7 @@ const Footer = () => {
           </p>
 
           <p className="footer__copyright">
-            © 2026 Pilar Trust
+            © 2026 PT Pilar Integrasi Solusindo
           </p>
         </div>
       </div>

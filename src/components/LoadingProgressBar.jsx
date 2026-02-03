@@ -8,12 +8,12 @@ const LoadingProgressBar = () => {
   useEffect(() => {
     // Simulate progressive loading
     const intervals = [
-      { time: 100, progress: 20 },
-      { time: 300, progress: 40 },
-      { time: 500, progress: 60 },
-      { time: 700, progress: 80 },
-      { time: 900, progress: 95 },
-      { time: 1100, progress: 100 }
+      { time: 10, progress: 20 },
+      { time: 20, progress: 40 },
+      { time: 30, progress: 60 },
+      { time: 40, progress: 80 },
+      { time: 50, progress: 95 },
+      { time: 1000, progress: 100 }
     ];
 
     intervals.forEach(({ time, progress: targetProgress }) => {

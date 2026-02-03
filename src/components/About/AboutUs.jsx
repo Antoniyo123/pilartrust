@@ -107,13 +107,18 @@ const AboutUs = () => {
             
             <div className="hero-middle">
               <p className="hero-description-about">
-                As a full-service global talent management business, we provide more than just standard agency services, 
-                specialising in growing international brands and reach for top-tier talent.
-              </p>
+                Perkembangan teknologi informasi dan transformasi
+digital yang pesat mendorong organisasi untuk
+memperkuat tata kelola, keamanan informasi,
+kepatuhan regulasi, serta ketahanan operasional
+bisnis.              </p>
               <p className="hero-description-about">
-                We pride ourselves on our tailored approach, using our deep understanding of audiences, culture, 
-                industry relationships, and expert teams to deliver world-class service that helps clients realise their ambitions.
-              </p>
+                Di tengah meningkatnya kompleksitas sistem
+dan ancaman siber, PT Pilar lntegrasi Solusindo
+(PILAR TRUST) hadir sebagai mitra profesional yang
+membantu organisasi membangun, menerapkan, dan
+meningkatkan sistem manaiemen serta keamanan
+informasi yang andal dan berkelaniutan.              </p>
             </div>
             
             <div className="hero-right">
@@ -170,22 +175,20 @@ manajemen, keamanan informasi, teknologi informasi, dan manajemen
 risiko, kami menghadirkan solusi yang komprehensif dan disesuaikan
 dengan kebutuhan organisasi.                </p>
                 <p>
-                  Melalui pendekatan yang profesional, independen, dan berorientasi
-pada peningkatan berkelanjutan, PILAR TRUST berkomitmen menjadi
-mitra strategis dalam meningkatkan keandalan sistem, kepatuhan
-terhadap regulasi, serta kepercayaan para pemangku kepentingan.            </p>
+                   </p>
               </div>
               
               <div className="company-text">
                 <p>
-                  With offices across major cities worldwide, we maintain a local presence with global reach. 
-                  Our diverse team brings together expertise in brand partnerships, content creation, strategic 
-                  planning, and business development.
+                   Melalui pendekatan yang profesional, independen, dan berorientasi
+pada peningkatan berkelanjutan, PILAR TRUST berkomitmen menjadi
+mitra strategis dalam meningkatkan keandalan sistem, kepatuhan
+terhadap regulasi, serta kepercayaan para pemangku kepentingan.          
                 </p>
-                <p>
+                {/* <p>
                   We pride ourselves on building lasting relationships based on trust, transparency, and mutual success. 
                   Our commitment extends beyond contracts—we invest in the long-term growth and legacy of every client we represent.
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

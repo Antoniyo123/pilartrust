@@ -7,15 +7,7 @@ body {
   font-family: Georgia, serif;
 }
 
-/* Ensure all text elements use Georgia */
-h1, h2, h3, h4, h5, h6,
-p, span, a, button, input, textarea, select,
-div, section, article, aside, nav, header, footer,
-ul, ol, li, dl, dt, dd,
-table, th, td, caption,
-label, legend, fieldset {
-  font-family: Georgia, serif;
-}
+
 
 /* SVG text elements */
 text, tspan {

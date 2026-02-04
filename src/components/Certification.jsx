@@ -4,12 +4,14 @@ import '../styles/Certification.css';
 const Certification = () => {
   const [selectedProcess, setSelectedProcess] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const certificationData = [
     {
       number: "01",
       image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
       title: "Consultation & Gap Analysis",
+      subtitle: "ASSESSMENT & PLANNING",
       description: "Comprehensive assessment of your current systems and processes",
       fullDescription: "Our certification journey begins with a thorough consultation and gap analysis. This critical first step allows us to understand your organization's current state and identify areas that need improvement to meet ISO standards.",
       details: [
@@ -27,6 +29,7 @@ const Certification = () => {
       number: "02",
       image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
       title: "Documentation Support",
+      subtitle: "POLICY & PROCEDURES",
       description: "Complete documentation preparation and policy development",
       fullDescription: "Documentation is the backbone of any management system. Our experts work closely with your team to develop comprehensive, ISO-compliant documentation that reflects your organization's unique processes and culture.",
       details: [
@@ -45,6 +48,7 @@ const Certification = () => {
       number: "03",
       image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80",
       title: "Training & Implementation",
+      subtitle: "EMPLOYEE DEVELOPMENT",
       description: "Staff training and system implementation guidance",
       fullDescription: "Successful ISO implementation requires engaged and knowledgeable employees. We provide comprehensive training programs tailored to different roles and responsibilities within your organization.",
       details: [
@@ -63,6 +67,7 @@ const Certification = () => {
       number: "04",
       image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80",
       title: "Internal Audit",
+      subtitle: "VERIFICATION & ASSESSMENT",
       description: "Pre-certification audit and continuous improvement support",
       fullDescription: "Internal audits are essential to verify that your management system is effectively implemented and ready for certification. Our experienced auditors conduct thorough assessments and provide actionable recommendations.",
       details: [
@@ -81,6 +86,7 @@ const Certification = () => {
       number: "05",
       image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80",
       title: "Certification Process",
+      subtitle: "EXTERNAL AUDIT SUPPORT",
       description: "Full support through external certification audit",
       fullDescription: "The certification audit is the culmination of all your preparation efforts. We guide you through both stages of the certification process, ensuring you're fully prepared and confident.",
       details: [
@@ -99,6 +105,7 @@ const Certification = () => {
       number: "06",
       image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80",
       title: "Post-Certification",
+      subtitle: "CONTINUOUS IMPROVEMENT",
       description: "Ongoing maintenance and surveillance audit preparation",
       fullDescription: "Maintaining your ISO certification requires continuous commitment to quality and improvement. We provide ongoing support to ensure your management system remains effective and compliant.",
       details: [
@@ -115,6 +122,10 @@ const Certification = () => {
       deliverables: "Surveillance Audit Reports, Performance Metrics, Improvement Plans"
     }
   ];
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const openModal = (process) => {
     setSelectedProcess(process);
@@ -141,41 +152,58 @@ const Certification = () => {
   }, [isModalOpen]);
 
   return (
-    <section className="certification" id="certification">
-      <div className="certification__container">
-        {/* Header */}
-        <div className="certification__header">
-          <h2 className="certification__title">Our Certification Process</h2>
-          <p className="certification__subtitle">Six steps to achieve your ISO certification</p>
+    <section className="certification-container" id="certification">
+      {/* Top Label */}
+      <div className="certification-top">
+        <div className="certification-top__label">ISO Certification Journey</div>
+      </div>
+
+      {/* Main Content */}
+      <div className="certification-main">
+        {/* Hero Section */}
+        <div className={`certification-hero ${isVisible ? 'visible' : ''}`}>
+          <h1 className="certification-hero__title">
+            <span>YOUR PATH TO</span>
+            <span className="highlight">CERTIFICATION</span>
+            <span>SUCCESS</span>
+          </h1>
+          <p className="certification-hero__excerpt">
+            Six strategic steps to achieve and maintain your ISO certification. 
+            Our proven methodology ensures a smooth journey from initial 
+            consultation to post-certification excellence.
+          </p>
         </div>
-        
+
         {/* Grid */}
-        <div className="certification__grid">
+        <div className="certification-grid">
           {certificationData.map((cert, index) => (
             <div 
               key={index} 
-              className="certification__card"
+              className="certification-card"
               onClick={() => openModal(cert)}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="certification__card-image">
+              <div className="certification-card__image">
                 <img src={cert.image} alt={cert.title} loading="lazy" />
-                <div className="certification__card-overlay">
-                  <div className="certification__card-number">{cert.number}</div>
+                <div className="certification-card__overlay">
+                  <div className="certification-card__number">{cert.number}</div>
                 </div>
               </div>
               
-              <div className="certification__card-content">
-                <h3 className="certification__card-title">{cert.title}</h3>
-                <p className="certification__card-description">{cert.description}</p>
+              <div className="certification-card__content">
+                <p className="certification-card__subtitle">{cert.subtitle}</p>
+                <h3 className="certification-card__title">{cert.title}</h3>
+                <p className="certification-card__description">{cert.description}</p>
                 
                 <button 
-                  className="certification__card-link" 
+                  className="certification-card__link" 
                   aria-label={`Learn more about ${cert.title}`}
                   onClick={(e) => {
                     e.stopPropagation();
                     openModal(cert);
                   }}
                 >
+                  <span>Learn More</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M7 17L17 7M7 7h10v10"/>
                   </svg>
@@ -184,31 +212,64 @@ const Certification = () => {
             </div>
           ))}
         </div>
+
+        {/* Stats Section */}
+        <div className="certification-stats">
+          <div className="stat-item">
+            <div className="stat-item__number">150+</div>
+            <div className="stat-item__label">Certified Companies</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-item__number">98%</div>
+            <div className="stat-item__label">Success Rate</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-item__number">25+</div>
+            <div className="stat-item__label">ISO Standards</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-item__number">15</div>
+            <div className="stat-item__label">Years Experience</div>
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="certification-cta">
+          <h2 className="certification-cta__title">
+            Ready to Begin Your Certification Journey?
+          </h2>
+          <p className="certification-cta__text">
+            Let our experienced team guide you through the entire process. 
+            From initial consultation to post-certification support, we're 
+            with you every step of the way.
+          </p>
+          <a href="#contact" className="certification-cta__button">
+            Get Started Today
+          </a>
+        </div>
       </div>
 
       {/* Modal */}
       {selectedProcess && (
         <div 
-          className={`certification__modal-overlay ${isModalOpen ? 'active' : ''}`}
+          className={`certification-modal-overlay ${isModalOpen ? 'active' : ''}`}
           onClick={closeModal}
         >
           <div 
-            className={`certification__modal ${isModalOpen ? 'active' : ''}`}
+            className={`certification-modal ${isModalOpen ? 'active' : ''}`}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="certification__modal-header">
-              <div className="certification__modal-title-wrapper">
-                <div className="certification__modal-number">{selectedProcess.number}</div>
+            <div className="certification-modal__header">
+              <div className="certification-modal__title-wrapper">
+                <div className="certification-modal__number">{selectedProcess.number}</div>
                 <div>
-                  <h3 className="certification__modal-title">{selectedProcess.title}</h3>
-                  <div className="certification__modal-meta">
-                    <span className="certification__modal-timeline">{selectedProcess.timeline}</span>
-                  </div>
+                  <p className="certification-modal__subtitle">{selectedProcess.subtitle}</p>
+                  <h3 className="certification-modal__title">{selectedProcess.title}</h3>
                 </div>
               </div>
               <button 
-                className="certification__modal-close"
+                className="certification-modal__close"
                 onClick={closeModal}
                 aria-label="Close modal"
               >
@@ -220,42 +281,48 @@ const Certification = () => {
             </div>
 
             {/* Modal Image */}
-            <div className="certification__modal-image">
+            <div className="certification-modal__image">
               <img src={selectedProcess.image} alt={selectedProcess.title} />
             </div>
 
             {/* Modal Content */}
-            <div className="certification__modal-content">
-              <div className="certification__modal-section">
-                <h4 className="certification__modal-section-title">Overview</h4>
-                <p className="certification__modal-text">{selectedProcess.fullDescription}</p>
+            <div className="certification-modal__content">
+              <div className="certification-modal__section">
+                <h4 className="certification-modal__section-title">Overview</h4>
+                <p className="certification-modal__text">{selectedProcess.fullDescription}</p>
               </div>
 
-              <div className="certification__modal-section">
-                <h4 className="certification__modal-section-title">What We Do</h4>
-                <ul className="certification__modal-list">
+              <div className="certification-modal__meta">
+                <div className="certification-modal__meta-item">
+                  <span className="meta-label">Timeline</span>
+                  <span className="meta-value">{selectedProcess.timeline}</span>
+                </div>
+                <div className="certification-modal__meta-item">
+                  <span className="meta-label">Deliverables</span>
+                  <span className="meta-value">{selectedProcess.deliverables}</span>
+                </div>
+              </div>
+
+              <div className="certification-modal__section">
+                <h4 className="certification-modal__section-title">What We Do</h4>
+                <ul className="certification-modal__list">
                   {selectedProcess.details.map((detail, index) => (
                     <li key={index}>{detail}</li>
                   ))}
                 </ul>
               </div>
-
-              <div className="certification__modal-section">
-                <h4 className="certification__modal-section-title">Deliverables</h4>
-                <p className="certification__modal-text">{selectedProcess.deliverables}</p>
-              </div>
             </div>
 
             {/* Modal Footer */}
-            <div className="certification__modal-footer">
+            <div className="certification-modal__footer">
               <button 
-                className="certification__modal-button certification__modal-button--secondary"
+                className="certification-modal__button certification-modal__button--secondary"
                 onClick={closeModal}
               >
                 Close
               </button>
               <button 
-                className="certification__modal-button certification__modal-button--primary"
+                className="certification-modal__button certification-modal__button--primary"
                 onClick={() => window.location.href = '#contact'}
               >
                 Get Started

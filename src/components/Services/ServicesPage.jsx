@@ -635,7 +635,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── CTA ── */}
-      <section className="services-cta">
+      {/* <section className="services-cta">
         <div className="container">
           <div className="cta-content">
             <h2 className="cta-title">Ready to secure your digital assets?</h2>
@@ -652,7 +652,7 @@ const ServicesPage = () => {
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
 
     </div>
   );

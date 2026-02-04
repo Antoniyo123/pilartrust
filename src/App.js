@@ -12,6 +12,7 @@ import Preloader from './components/Preloader';
 import './styles/Preloader.css';
 
 import './styles/global.css';
+import News from './components/News/News';
 
 const PageWrapper = ({ children }) => {
   const location = useLocation();
@@ -76,6 +77,7 @@ const App = () => {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/contact" element={<GetInTouchPage />} />
+            <Route path="/news" element={<News />} />
           </Routes>
         </PageWrapper>
         <Footer />

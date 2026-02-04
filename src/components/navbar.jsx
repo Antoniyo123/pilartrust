@@ -83,7 +83,7 @@ const Navbar = () => {
 
   // Determine navbar theme based on current route
   const getNavbarTheme = () => {
-    const darkPages = ['/services', '/about', '/contact'];
+    const darkPages = ['/services', '/about', '/contact', '/news'];
     
     if (isScrolled) {
       return 'light';
@@ -141,6 +141,15 @@ const Navbar = () => {
                 onClick={closeMobileMenu}
               >
                 ABOUT
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link 
+                to="/news" 
+                className={`nav__link ${isActive('/news') ? 'active' : ''}`}
+                onClick={closeMobileMenu}
+              >
+                NEWS
               </Link>
             </li>
           </ul>
@@ -209,6 +218,15 @@ const Navbar = () => {
                 onClick={closeMobileMenu}
               >
                 ABOUT
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link 
+                to="/about" 
+                className={`nav__link ${isActive('/about') ? 'active' : ''}`}
+                onClick={closeMobileMenu}
+              >
+                NEWS
               </Link>
             </li>
             <li className="nav__item">

@@ -55,19 +55,19 @@ const GetInTouchPage = () => {
   };
 
   return (
-    <div className="page-container">
-      {/* Hero Section */}
+    <div className="get_in_touch__page-container">
+      {/* Top Banner Section */}
       <section 
         ref={heroRef}
-        className={`hero-section animate-on-scroll ${heroVisible ? 'visible' : ''}`}
+        className={`get_in_touch__banner-section get_in_touch__scroll-animate ${heroVisible ? 'get_in_touch__is-visible' : ''}`}
       >
-        <div className="hero-grid">
-          <div className="hero-content">
-            <div className="hero-badge animate-fade-in stagger-1">Let's Connect</div>
-            <h1 className="hero-title animate-fade-in-up stagger-2">
-              Get Your ISO <span className="highlight">Certification</span>
+        <div className="get_in_touch__banner-wrapper">
+          <div className="get_in_touch__banner-inner">
+            <div className="get_in_touch__top-badge get_in_touch__fade-in-anim get_in_touch__delay-1">Let's Connect</div>
+            <h1 className="get_in_touch__main-heading get_in_touch__fade-up-anim get_in_touch__delay-2">
+              Get Your ISO <span className="get_in_touch__accent-text">Certification</span>
             </h1>
-            <p className="hero-description animate-fade-in-up stagger-3">
+            <p className="get_in_touch__intro-text get_in_touch__fade-up-anim get_in_touch__delay-3">
               Partner with us to achieve international standards certification. 
               Our expert team is ready to guide you through every step of the certification process.
             </p>
@@ -75,139 +75,139 @@ const GetInTouchPage = () => {
         </div>
       </section>
 
-      {/* Main Content */}
+      {/* Main Content Section */}
       <section 
         ref={contentRef}
-        className={`content-section animate-on-scroll ${contentVisible ? 'visible' : ''}`}
+        className={`get_in_touch__main-section get_in_touch__scroll-animate ${contentVisible ? 'get_in_touch__is-visible' : ''}`}
       >
-        <div className="content-wrapper">
+        <div className="get_in_touch__main-wrapper">
           {/* Left Column - Info */}
-          <div className="info-column">
-            <div className="info-block animate-fade-in-up stagger-1">
-              <h2 className="section-title">Why Choose Pilar</h2>
-              <p className="section-description">
+          <div className="get_in_touch__left-column">
+            <div className="get_in_touch__intro-block get_in_touch__fade-up-anim get_in_touch__delay-1">
+              <h2 className="get_in_touch__section-heading">Why Choose Pilar</h2>
+              <p className="get_in_touch__section-text">
                 We're more than just a certification body. We're your strategic partner in achieving 
                 excellence through internationally recognized standards.
               </p>
             </div>
 
-            <div className="features-list">
-              <div className="feature-item animate-slide-in-left stagger-2">
-                <div className="feature-number">01</div>
-                <div className="feature-content">
-                  <h3 className="feature-title">Proven Expertise</h3>
-                  <p className="feature-text">Certified auditors with extensive industry experience</p>
+            <div className="get_in_touch__benefits-list">
+              <div className="get_in_touch__benefit-card get_in_touch__slide-left-anim get_in_touch__delay-2">
+                <div className="get_in_touch__benefit-number">01</div>
+                <div className="get_in_touch__benefit-details">
+                  <h3 className="get_in_touch__benefit-heading">Proven Expertise</h3>
+                  <p className="get_in_touch__benefit-description">Certified auditors with extensive industry experience</p>
                 </div>
               </div>
 
-              <div className="feature-item animate-slide-in-left stagger-3">
-                <div className="feature-number">02</div>
-                <div className="feature-content">
-                  <h3 className="feature-title">Fast Processing</h3>
-                  <p className="feature-text">Streamlined certification process with quick turnaround</p>
+              <div className="get_in_touch__benefit-card get_in_touch__slide-left-anim get_in_touch__delay-3">
+                <div className="get_in_touch__benefit-number">02</div>
+                <div className="get_in_touch__benefit-details">
+                  <h3 className="get_in_touch__benefit-heading">Fast Processing</h3>
+                  <p className="get_in_touch__benefit-description">Streamlined certification process with quick turnaround</p>
                 </div>
               </div>
 
-              <div className="feature-item animate-slide-in-left stagger-4">
-                <div className="feature-number">03</div>
-                <div className="feature-content">
-                  <h3 className="feature-title">Full Support</h3>
-                  <p className="feature-text">Comprehensive guidance from consultation to certification</p>
+              <div className="get_in_touch__benefit-card get_in_touch__slide-left-anim get_in_touch__delay-4">
+                <div className="get_in_touch__benefit-number">03</div>
+                <div className="get_in_touch__benefit-details">
+                  <h3 className="get_in_touch__benefit-heading">Full Support</h3>
+                  <p className="get_in_touch__benefit-description">Comprehensive guidance from consultation to certification</p>
                 </div>
               </div>
             </div>
 
-            <div className="contact-info animate-fade-in-up stagger-5">
-              <div className="contact-item">
-                <div className="contact-label">Email</div>
-                <div className="contact-value">info@pilar-iso.com</div>
+            <div className="get_in_touch__details-box get_in_touch__fade-up-anim get_in_touch__delay-5">
+              <div className="get_in_touch__detail-row">
+                <div className="get_in_touch__detail-label">Email</div>
+                <div className="get_in_touch__detail-value">info@pilar-iso.com</div>
               </div>
 
-              <div className="contact-item">
-                <div className="contact-label">Phone</div>
-                <div className="contact-value">+62 21 5252 4567</div>
+              <div className="get_in_touch__detail-row">
+                <div className="get_in_touch__detail-label">Phone</div>
+                <div className="get_in_touch__detail-value">+62 21 5252 4567</div>
               </div>
 
-              <div className="contact-item">
-                <div className="contact-label">Location</div>
-                <div className="contact-value">Jakarta Selatan, Indonesia</div>
+              <div className="get_in_touch__detail-row">
+                <div className="get_in_touch__detail-label">Location</div>
+                <div className="get_in_touch__detail-value">Jakarta Selatan, Indonesia</div>
               </div>
             </div>
           </div>
 
           {/* Right Column - Form */}
-          <div className="form-column animate-slide-in-right stagger-2">
-            <div className="form-card">
-              <div className="form-header">
-                <h2 className="form-title">Request Consultation</h2>
-                <p className="form-subtitle">Fill out the form and we'll get back to you within 24 hours</p>
+          <div className="get_in_touch__right-column get_in_touch__slide-right-anim get_in_touch__delay-2">
+            <div className="get_in_touch__card">
+              <div className="get_in_touch__card-header">
+                <h2 className="get_in_touch__card-title">Request Consultation</h2>
+                <p className="get_in_touch__card-subtitle">Fill out the form and we'll get back to you within 24 hours</p>
               </div>
 
-              <div className="form-body">
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="name" className="form-label">Full Name *</label>
+              <div className="get_in_touch__form">
+                <div className="get_in_touch__fields-row">
+                  <div className="get_in_touch__field">
+                    <label htmlFor="name" className="get_in_touch__label">Full Name *</label>
                     <input
                       type="text"
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="form-input"
+                      className="get_in_touch__input"
                       placeholder="Your name"
                     />
                   </div>
 
-                  <div className="form-group">
-                    <label htmlFor="email" className="form-label">Email *</label>
+                  <div className="get_in_touch__field">
+                    <label htmlFor="email" className="get_in_touch__label">Email *</label>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="form-input"
+                      className="get_in_touch__input"
                       placeholder="your@email.com"
                     />
                   </div>
                 </div>
 
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="phone" className="form-label">Phone *</label>
+                <div className="get_in_touch__fields-row">
+                  <div className="get_in_touch__field">
+                    <label htmlFor="phone" className="get_in_touch__label">Phone *</label>
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="form-input"
+                      className="get_in_touch__input"
                       placeholder="+62 812 3456 7890"
                     />
                   </div>
 
-                  <div className="form-group">
-                    <label htmlFor="company" className="form-label">Company</label>
+                  <div className="get_in_touch__field">
+                    <label htmlFor="company" className="get_in_touch__label">Company</label>
                     <input
                       type="text"
                       id="company"
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="form-input"
+                      className="get_in_touch__input"
                       placeholder="Company name"
                     />
                   </div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="service" className="form-label">ISO Standard *</label>
+                <div className="get_in_touch__field">
+                  <label htmlFor="service" className="get_in_touch__label">ISO Standard *</label>
                   <select
                     id="service"
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="form-select"
+                    className="get_in_touch__dropdown"
                   >
                     <option value="">Select ISO standard</option>
                     <option value="iso9001">ISO 9001 - Quality Management</option>
@@ -220,14 +220,14 @@ const GetInTouchPage = () => {
                   </select>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="message" className="form-label">Message *</label>
+                <div className="get_in_touch__field">
+                  <label htmlFor="message" className="get_in_touch__label">Message *</label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    className="form-textarea"
+                    className="get_in_touch__textarea"
                     rows="5"
                     placeholder="Tell us about your certification needs..."
                   ></textarea>
@@ -235,20 +235,20 @@ const GetInTouchPage = () => {
 
                 <button 
                   onClick={handleSubmit}
-                  className={`form-submit ${isSubmitting ? 'submitting' : ''}`}
+                  className={`get_in_touch__submit-btn ${isSubmitting ? 'get_in_touch__is-submitting' : ''}`}
                   disabled={isSubmitting}
                 >
-                  <span className="submit-text">
+                  <span className="get_in_touch__btn-text">
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </span>
-                  <svg className="submit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg className="get_in_touch__btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
                 </button>
 
                 {submitStatus === 'success' && (
-                  <div className="success-message">
-                    <svg className="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <div className="get_in_touch__alert-success">
+                    <svg className="get_in_touch__alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                     <span>Message sent successfully! We'll contact you soon.</span>

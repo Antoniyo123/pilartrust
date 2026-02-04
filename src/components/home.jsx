@@ -59,8 +59,7 @@ const Home = () => {
           </div>
           
           <p className="hero__subtitle">
-            ISO Certification & Management System Consulting
-          </p>
+            Governance, Risk and Compliance Integration Solution          </p>
           
           {/* Get Started Button */}
           <button 

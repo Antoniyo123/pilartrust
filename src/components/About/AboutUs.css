@@ -1,9 +1,11 @@
+/* Global Container */
 .about-section {
   width: 100%;
+  padding-top: 30px;
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 60px;
   width: 100%;
@@ -16,13 +18,38 @@
   align-items: center;
   background: #fafafa;
   padding: 100px 0;
+  width: 100%;
 }
 
 .hero-grid {
+  margin: 0 auto;
+  max-width: 1200px;
   display: grid;
-  grid-template-columns: 1.2fr 0.9fr 0.9fr;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: start;
+  width: 100%;
+}
+
+.hero-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: start;
+  margin-bottom: 40px;
+}
+
+.hero-left {
+  grid-column: 1;
+}
+
+.hero-middle {
+  grid-column: 2;
+}
+
+.hero-right {
+  grid-column: 1 / span 2;
+  grid-row: 2;
 }
 
 .hero-title-about {
@@ -77,9 +104,10 @@
 .hero-image-wrapper {
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 500px;
   overflow: hidden;
   border: 1px solid #e8e8e8;
+  margin-top: 20px;
 }
 
 .hero-team-image {
@@ -119,12 +147,15 @@
 .stats-section {
   padding: 120px 0;
   background: #fff;
+  width: 100%;
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .stat-item {
@@ -157,10 +188,14 @@
 .company-section {
   padding: 120px 0;
   background: #fafafa;
+  width: 100%;
 }
 
 .section-header {
   margin-bottom: 80px;
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  padding: 0 60px;
 }
 
 .section-label {
@@ -196,6 +231,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px;
 }
 
 .company-text {
@@ -216,12 +254,16 @@
 .vision-mission-section {
   padding: 120px 0;
   background: #fff;
+  width: 100%;
 }
 
 .vm-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px;
 }
 
 .vm-item {
@@ -252,6 +294,7 @@
 .bod-section {
   padding: 120px 0;
   background: #fafafa;
+  width: 100%;
 }
 
 .bod-grid {
@@ -259,6 +302,9 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 60px;
   margin-top: 60px;
+  max-width: 1200px;
+  margin: 60px auto 0;
+  padding: 0 60px;
 }
 
 .bod-card {
@@ -313,7 +359,7 @@
   font-weight: 300;
   margin-bottom: 24px;
   transition: all 0.3s ease;
-  overflow: hidden; /* Tambahkan ini */
+  overflow: hidden;
 }
 
 .bod-avatar img {
@@ -335,7 +381,7 @@
   font-size: 2rem;
   font-weight: 300;
   flex-shrink: 0;
-  overflow: hidden; /* Tambahkan ini */
+  overflow: hidden;
 }
 
 .modal-avatar img {
@@ -468,20 +514,6 @@
   background: #fafafa;
 }
 
-.modal-avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: #1a1a1a;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 300;
-  flex-shrink: 0;
-}
-
 .modal-title-group {
   flex: 1;
 }
@@ -547,165 +579,460 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+
+/* Tablet Landscape (1024px - 1200px) */
+@media (max-width: 1200px) {
   .container {
     padding: 0 40px;
   }
-
-  .hero-grid {
-    grid-template-columns: 1fr;
+  
+  .hero-content-wrapper {
     gap: 40px;
   }
   
-  .hero-title-about {
-    font-size: 2.5rem;
-  }
-
   .hero-image-wrapper {
-    height: 500px;
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    height: 450px;
   }
   
-  .stat-number {
-    font-size: 5rem;
-  }
-
-  .company-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  
-  .section-title {
-    font-size: 2.5rem;
-  }
-
-  .vm-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
+  .stats-grid,
+  .company-grid,
+  .vm-grid,
   .bod-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
+    max-width: 100%;
+    padding: 0 40px;
   }
-
-  .modal-header {
-    padding: 40px 40px 30px;
-  }
-
-  .modal-body {
-    padding: 40px;
-  }
-
-  .modal-name {
-    font-size: 2rem;
+  
+  .section-header {
+    padding: 0 40px;
   }
 }
 
-@media (max-width: 768px) {
+/* Tablet (900px - 1024px) */
+@media (max-width: 1024px) {
   .container {
-    padding: 0 20px;
+    padding: 0 30px;
   }
-
-  .about-hero {
-    padding: 60px 0;
+  
+  .hero-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
-
+  
+  .hero-left {
+    grid-column: 1;
+  }
+  
+  .hero-middle {
+    grid-column: 1;
+  }
+  
+  .hero-right {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  
   .hero-title-about {
-    font-size: 2rem;
+    font-size: 3rem;
   }
-
+  
   .hero-image-wrapper {
     height: 400px;
   }
-
-  .hero-image-overlay {
-    opacity: 1;
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 0 30px;
   }
-
-  .image-label {
-    font-size: 1rem;
+  
+  .stat-number {
+    font-size: 6rem;
   }
+  
+  .section-title {
+    font-size: 3rem;
+  }
+  
+  .company-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 30px;
+  }
+  
+  .vm-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 0 30px;
+  }
+  
+  .bod-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 0 30px;
+  }
+  
+  .section-header {
+    padding: 0 30px;
+  }
+  
+  .modal-header {
+    padding: 50px 40px 30px;
+  }
+  
+  .modal-body {
+    padding: 40px;
+  }
+  
+  .modal-name {
+    font-size: 2.2rem;
+  }
+}
 
+/* Tablet Portrait (768px - 900px) */
+@media (max-width: 900px) {
+  .about-hero {
+    padding: 80px 0;
+    min-height: auto;
+  }
+  
+  .hero-title-about {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .hero-image-wrapper {
+    height: 350px;
+  }
+  
   .stats-section,
   .company-section,
   .vision-mission-section,
   .bod-section {
     padding: 80px 0;
   }
-
+  
   .stat-number {
-    font-size: 4rem;
+    font-size: 5rem;
   }
-
+  
+  .stat-label {
+    font-size: 1.2rem;
+  }
+  
   .section-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
+  
+  .vm-title {
+    font-size: 1.8rem;
+  }
+  
+  .vm-description {
+    font-size: 1rem;
+  }
+}
 
+/* Mobile Large (640px - 768px) */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  
+  .about-hero {
+    padding: 60px 0;
+  }
+  
+  .hero-grid {
+    gap: 30px;
+  }
+  
+  .hero-content-wrapper {
+    gap: 30px;
+  }
+  
+  .hero-title-about {
+    font-size: 2.2rem;
+  }
+  
+  .hero-description-about {
+    font-size: 1rem;
+  }
+  
+  .hero-image-wrapper {
+    height: 300px;
+    margin-top: 10px;
+  }
+  
+  .hero-image-overlay {
+    opacity: 1;
+    padding: 20px;
+  }
+  
+  .image-label {
+    font-size: 1rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 20px;
+  }
+  
+  .stat-item {
+    padding-left: 20px;
+  }
+  
+  .stat-number {
+    font-size: 4.5rem;
+  }
+  
+  .company-grid {
+    padding: 0 20px;
+  }
+  
+  .section-header {
+    padding: 0 20px;
+    margin-bottom: 60px;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .vm-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 20px;
+  }
+  
+  .vm-item {
+    padding: 30px 0;
+  }
+  
   .bod-grid {
     grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 20px;
+    margin-top: 40px;
   }
-
+  
   .bod-card {
     padding: 30px;
   }
-
+  
   .view-profile {
     opacity: 1;
     transform: translateX(0);
   }
-
+  
+  /* Modal Mobile Styles */
   .modal-overlay {
     padding: 0;
     align-items: flex-end;
   }
-
+  
   .modal-content {
     max-height: 95vh;
     border-radius: 20px 20px 0 0;
     max-width: 100%;
   }
-
+  
   .modal-header {
     padding: 30px 30px 25px;
     flex-direction: column;
     align-items: flex-start;
   }
-
+  
   .modal-avatar {
     width: 80px;
     height: 80px;
     font-size: 1.5rem;
   }
-
+  
   .modal-name {
     font-size: 1.8rem;
   }
-
+  
   .modal-position {
     font-size: 1rem;
   }
-
+  
   .modal-body {
     padding: 30px;
   }
-
+  
   .modal-section-title {
     font-size: 1rem;
   }
-
+  
   .modal-text {
     font-size: 0.95rem;
   }
-
+  
   .modal-close {
     color: #314ad5d6;
     top: 15px;
     right: 15px;
     font-size: 2rem;
+  }
+}
+
+/* Mobile Medium (480px - 640px) */
+@media (max-width: 640px) {
+  .hero-title-about {
+    font-size: 2rem;
+  }
+  
+  .hero-image-wrapper {
+    height: 250px;
+  }
+  
+  .btn-outline {
+    padding: 12px 24px;
+    font-size: 0.8rem;
+  }
+  
+  .stats-section,
+  .company-section,
+  .vision-mission-section,
+  .bod-section {
+    padding: 60px 0;
+  }
+  
+  .stat-number {
+    font-size: 4rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-label {
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .vm-title {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+  
+  .bod-name {
+    font-size: 1.3rem;
+  }
+  
+  .bod-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 1.3rem;
+  }
+}
+
+/* Mobile Small (375px - 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .hero-title-about {
+    font-size: 1.8rem;
+  }
+  
+  .hero-image-wrapper {
+    height: 200px;
+  }
+  
+  .stat-number {
+    font-size: 3.5rem;
+  }
+  
+  .stat-label {
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .company-text {
+    font-size: 1rem;
+  }
+  
+  .vm-item {
+    padding: 25px 0;
+  }
+  
+  .vm-title {
+    font-size: 1.5rem;
+  }
+  
+  .vm-description {
+    font-size: 0.95rem;
+  }
+  
+  .bod-card {
+    padding: 25px;
+  }
+  
+  .bod-name {
+    font-size: 1.2rem;
+  }
+  
+  .bod-bio {
+    font-size: 0.9rem;
+  }
+  
+  .modal-header {
+    padding: 25px 25px 20px;
+  }
+  
+  .modal-name {
+    font-size: 1.6rem;
+  }
+  
+  .modal-body {
+    padding: 25px;
+  }
+  
+  .modal-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra Small Devices (320px - 375px) */
+@media (max-width: 375px) {
+  .hero-title-about {
+    font-size: 1.6rem;
+  }
+  
+  .hero-description-about {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .hero-image-wrapper {
+    height: 180px;
+  }
+  
+  .stat-number {
+    font-size: 3rem;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .vm-title {
+    font-size: 1.4rem;
+  }
+  
+  .bod-card {
+    padding: 20px;
+  }
+  
+  .bod-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
   }
 }

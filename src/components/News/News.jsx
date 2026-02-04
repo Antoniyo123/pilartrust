@@ -95,7 +95,8 @@ const News = () => {
           <p className="hero-news-excerpt">
             Revolusi digital mengubah cara kita hidup, bekerja, dan berinteraksi. Dari AI hingga teknologi hijau, masa depan sedang tercipta di depan mata kita.
           </p>
-          <a href="#" className="read-more">Baca Selengkapnya</a>
+          <a href="/news/detail">Baca Selengkapnya</a>
+
         </section>
 
         {/* Featured & Sidebar Grid */}
@@ -107,7 +108,7 @@ const News = () => {
             <p>
               Implementasi AI dalam berbagai sektor industri menunjukkan pertumbuhan eksponensial. Dari otomasi manufaktur hingga personalisasi layanan kesehatan, teknologi ini membuka peluang baru yang sebelumnya tidak terbayangkan. Para ahli memperkirakan dampak ekonomi global mencapai triliunan dollar dalam dekade mendatang.
             </p>
-            <a href="#" className="read-link">Baca Artikel →</a>
+            <a href="/news/detail" className="read-link">Baca Artikel →</a>
           </article>
 
           {/* Sidebar */}
@@ -131,7 +132,7 @@ const News = () => {
                 <span className="category">{article.category}</span>
                 <h3>{article.title}</h3>
                 <p>{article.excerpt}</p>
-                <a href="#" className="read-link">Selengkapnya →</a>
+                <a href="/news/detail" className="read-link">Selengkapnya →</a>
               </article>
             ))}
           </div>

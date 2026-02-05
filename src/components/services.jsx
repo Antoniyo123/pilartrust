@@ -1,12 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/services.css';
 
 const Services = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     setIsVisible(true);
+  }, []);
+
+  // Track mouse for subtle parallax
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!containerRef.current) return;
+      
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      
+      // Normalize to -1 to 1 range (subtle movement)
+      const x = (clientX / innerWidth - 0.5) * 2;
+      const y = (clientY / innerHeight - 0.5) * 2;
+      
+      setMousePos({ x, y });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const servicesData = [
@@ -128,8 +150,65 @@ const Services = () => {
     setSelectedService(selectedService?.id === service.id ? null : service);
   };
 
+  // Subtle parallax for layers
+  const getParallaxStyle = (depth = 1) => {
+    return {
+      transform: `translate(${mousePos.x * 5 * depth}px, ${mousePos.y * 5 * depth}px)`,
+      transition: 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)'
+    };
+  };
+
+  // Card tilt effect when hovered
+  const getCardTiltStyle = (serviceId) => {
+    if (hoveredCard !== serviceId) return {};
+    
+    return {
+      transform: `perspective(1000px) rotateX(${-mousePos.y * 2}deg) rotateY(${mousePos.x * 2}deg) translateZ(10px)`,
+      transition: 'transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
+    };
+  };
+
   return (
-    <div className="services-container">
+    <div className="services-container" ref={containerRef}>
+      {/* Minimalist cursor dot */}
+      <div 
+        className="services__cursor"
+        style={{
+          left: `${(mousePos.x + 1) * 50}%`,
+          top: `${(mousePos.y + 1) * 50}%`,
+        }}
+      />
+
+      {/* Subtle background grid */}
+      <div className="services__grid" style={getParallaxStyle(0.1)}>
+        <div className="services__grid-overlay"></div>
+      </div>
+
+      {/* Floating minimal shapes */}
+      <div className="services__shapes">
+        <div 
+          className="services__shape services__shape--1"
+          style={{
+            transform: `translate(${mousePos.x * 15}px, ${mousePos.y * 15}px)`,
+            transition: 'transform 0.5s ease-out'
+          }}
+        />
+        <div 
+          className="services__shape services__shape--2"
+          style={{
+            transform: `translate(${-mousePos.x * 20}px, ${-mousePos.y * 20}px)`,
+            transition: 'transform 0.6s ease-out'
+          }}
+        />
+        <div 
+          className="services__shape services__shape--3"
+          style={{
+            transform: `translate(${mousePos.x * 10}px, ${mousePos.y * 25}px)`,
+            transition: 'transform 0.7s ease-out'
+          }}
+        />
+      </div>
+
       {/* Top Section */}
       <div className="services-top">
         <div className="services-top__label">Our Expertise</div>
@@ -138,11 +217,23 @@ const Services = () => {
       {/* Main Content */}
       <main className="services-main">
         {/* Hero Section */}
-        <section className={`services-hero ${isVisible ? 'visible' : ''}`}>
+        <section 
+          className={`services-hero ${isVisible ? 'visible' : ''}`}
+          style={getParallaxStyle(0.15)}
+        >
           <h1 className="services-hero__title">
-            <span>LAYANAN</span>
-            <span className="highlight">PROFESIONAL</span>
-            <span>KAMI</span>
+            <span style={{ transform: `translateX(${mousePos.x * 3}px)`, transition: 'transform 0.4s ease-out' }}>
+              LAYANAN
+            </span>
+            <span 
+              className="highlight"
+              style={{ transform: `translateX(${mousePos.x * 5}px)`, transition: 'transform 0.5s ease-out' }}
+            >
+              PROFESIONAL
+            </span>
+            <span style={{ transform: `translateX(${mousePos.x * 3}px)`, transition: 'transform 0.4s ease-out' }}>
+              KAMI
+            </span>
           </h1>
           <p className="services-hero__excerpt">
             Solusi komprehensif untuk kebutuhan sistem manajemen, keamanan informasi, dan compliance organisasi Anda dengan standar internasional.
@@ -155,8 +246,16 @@ const Services = () => {
             <article 
               key={service.id} 
               className={`service-item ${selectedService?.id === service.id ? 'active' : ''}`}
-              style={{ animationDelay: `${index * 0.1}s` }}
+              style={{ 
+                animationDelay: `${index * 0.1}s`,
+                ...getCardTiltStyle(service.id)
+              }}
+              onMouseEnter={() => setHoveredCard(service.id)}
+              onMouseLeave={() => setHoveredCard(null)}
             >
+              {/* Hover overlay gradient */}
+              <div className="service-item__hover-overlay"></div>
+
               <div 
                 className="service-item__header"
                 onClick={() => handleServiceClick(service)}
@@ -164,6 +263,7 @@ const Services = () => {
                 <div className="service-item__left">
                   <span className="service-item__number">{service.number}</span>
                   <div className="service-item__icon-wrapper">
+                    <div className="service-item__icon-bg"></div>
                     {service.icon}
                   </div>
                 </div>
@@ -174,16 +274,8 @@ const Services = () => {
                 </div>
 
                 <button className="service-item__toggle">
-                  <svg 
-                    width="24" 
-                    height="24" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="2"
-                  >
-                    <path d="M6 9l6 6 6-6"/>
-                  </svg>
+                  <span className="service-item__toggle-line service-item__toggle-line--1"></span>
+                  <span className="service-item__toggle-line service-item__toggle-line--2"></span>
                 </button>
               </div>
 
@@ -196,49 +288,47 @@ const Services = () => {
                   <h3>Spesialisasi & Layanan:</h3>
                   <ul>
                     {service.specializations.map((spec, idx) => (
-                      <li key={idx}>{spec}</li>
+                      <li key={idx}>
+                        <span className="spec-marker"></span>
+                        {spec}
+                      </li>
                     ))}
                   </ul>
                 </div>
 
                 <a href="#contact" className="service-item__cta">
-                  Konsultasi Sekarang →
+                  <span>Konsultasi Sekarang</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
                 </a>
               </div>
             </article>
           ))}
         </section>
 
-        {/* Stats Section */}
-        <section className="services-stats">
-          <div className="stat-item">
-            <div className="stat-item__number">7+</div>
-            <div className="stat-item__label">ISO Standards</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-item__number">100+</div>
-            <div className="stat-item__label">Clients Served</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-item__number">5+</div>
-            <div className="stat-item__label">Years Experience</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-item__number">98%</div>
-            <div className="stat-item__label">Success Rate</div>
-          </div>
+        {/* Stats Section with parallax */}
+        <section className="services-stats" style={getParallaxStyle(0.12)}>
+          {[
+            { number: "7+", label: "ISO Standards" },
+            { number: "100+", label: "Clients Served" },
+            { number: "5+", label: "Years Experience" },
+            { number: "98%", label: "Success Rate" }
+          ].map((stat, i) => (
+            <div 
+              key={i}
+              className="stat-item"
+              style={{
+                transform: `translateY(${mousePos.y * (2 + i * 0.5)}px)`,
+                transition: 'transform 0.5s ease-out'
+              }}
+            >
+              <div className="stat-item__number">{stat.number}</div>
+              <div className="stat-item__label">{stat.label}</div>
+              <div className="stat-item__line"></div>
+            </div>
+          ))}
         </section>
-
-        {/* CTA Section */}
-        {/* <section className="services-cta">
-          <h2 className="services-cta__title">Siap Meningkatkan Compliance & Security?</h2>
-          <p className="services-cta__text">
-            Hubungi kami untuk konsultasi gratis dan temukan solusi terbaik untuk organisasi Anda.
-          </p>
-          <a href="#contact" className="services-cta__button">
-            Get Started Today
-          </a>
-        </section> */}
       </main>
     </div>
   );

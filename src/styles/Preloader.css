@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   PRELOADER  —  dark cinematic reveal
+   PRELOADER  —  dark cinematic reveal with 3D cursor effects
    phases: logo → lines → letters → tagline → hold → exit
    ═══════════════════════════════════════════════════════ */
 
@@ -13,6 +13,45 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  cursor: none; /* hide default cursor for custom cursor dot */
+}
+
+/* ════════════════════════════════════════
+   CUSTOM CURSOR DOT
+   ════════════════════════════════════════ */
+.preloader__cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(49, 74, 213, 0.8);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 
+    0 0 12px rgba(49, 74, 213, 0.6),
+    0 0 24px rgba(49, 74, 213, 0.3);
+}
+
+.preloader__cursor-dot::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(49, 74, 213, 0.3);
+  border-radius: 50%;
+  animation: cursorRing 1.5s ease-in-out infinite;
+}
+
+@keyframes cursorRing {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
 }
 
 /* ════════════════════════════════════════
@@ -34,7 +73,7 @@
 }
 
 /* ════════════════════════════════════════
-   FLOATING PARTICLES
+   FLOATING PARTICLES (with parallax)
    ════════════════════════════════════════ */
 .preloader__particles {
   position: absolute;
@@ -49,6 +88,8 @@
   background: #314ad5d6;
   opacity: 0;
   animation: particleFade 3.5s ease-in-out infinite;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 @keyframes particleFade {
@@ -60,13 +101,15 @@
 }
 
 /* ════════════════════════════════════════
-   HORIZONTAL SWEEP LINES
+   HORIZONTAL SWEEP LINES (with parallax)
    ════════════════════════════════════════ */
 .preloader__lines {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 1;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .preloader__line {
@@ -104,7 +147,7 @@
 }
 
 /* ════════════════════════════════════════
-   CONTENT WRAPPER
+   CONTENT WRAPPER (3D transformed)
    ════════════════════════════════════════ */
 .preloader__content {
   position: relative;
@@ -113,6 +156,60 @@
   flex-direction: column;
   align-items: center;
   gap: 26px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ════════════════════════════════════════
+   3D FLOATING RINGS AROUND LOGO
+   ════════════════════════════════════════ */
+.preloader__rings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader__ring {
+  position: absolute;
+  border: 1px solid rgba(49, 74, 213, 0.25);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+  animation: ringFloat 4s ease-in-out infinite;
+}
+
+.preloader__ring--1 {
+  width: 280px;
+  height: 280px;
+  animation-delay: 0s;
+  opacity: 0;
+  animation: ringFloat 4s ease-in-out infinite, ringFadeIn 0.8s ease-out 0.3s forwards;
+}
+
+.preloader__ring--2 {
+  width: 380px;
+  height: 380px;
+  animation-delay: 0.5s;
+  opacity: 0;
+  animation: ringFloat 5s ease-in-out infinite, ringFadeIn 0.8s ease-out 0.6s forwards;
+  border-style: dashed;
+}
+
+@keyframes ringFloat {
+  0%, 100% { 
+    transform: rotateX(15deg) rotateY(0deg) scale(1);
+  }
+  50% { 
+    transform: rotateX(15deg) rotateY(15deg) scale(1.05);
+  }
+}
+
+@keyframes ringFadeIn {
+  to { opacity: 1; }
 }
 
 /* ════════════════════════════════════════
@@ -126,19 +223,23 @@
   /* clip shimmer to the logo square */
   width: 140px;
   height: 140px;
+  transform-style: preserve-3d;
 }
 
-/* pulsing radial glow behind logo */
+/* pulsing radial glow behind logo (reacts to cursor) */
 .preloader__glow {
   position: absolute;
   inset: -20px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(49, 74, 213, 0.22) 0%,
+    rgba(49, 74, 213, 0.28) 0%,
+    rgba(49, 74, 213, 0.15) 40%,
     transparent 70%
   );
   animation: glowPulse 2.6s ease-in-out infinite;
+  will-change: transform;
+  filter: blur(12px);
 }
 
 @keyframes glowPulse {
@@ -155,12 +256,13 @@
   object-fit: contain;
   opacity: 0;
   animation: logoReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  filter: drop-shadow(0 0 20px rgba(49, 74, 213, 0.3));
 }
 
 @keyframes logoReveal {
-  0%   { opacity: 0; transform: scale(0.68) translateY(14px); filter: blur(8px); }
-  55%  { opacity: 1; filter: blur(0);                          }
-  100% { opacity: 1; transform: scale(1)    translateY(0);    filter: blur(0);   }
+  0%   { opacity: 0; transform: scale(0.68) translateY(14px) translateZ(-50px); filter: blur(8px); }
+  55%  { opacity: 1; filter: blur(0); filter: drop-shadow(0 0 20px rgba(49, 74, 213, 0.3)); }
+  100% { opacity: 1; transform: scale(1) translateY(0) translateZ(0); filter: drop-shadow(0 0 20px rgba(49, 74, 213, 0.3)); }
 }
 
 /* diagonal shimmer that sweeps across the logo area during hold */
@@ -197,13 +299,14 @@
 }
 
 /* ════════════════════════════════════════
-   STAGGERED LETTER TEXT
+   STAGGERED LETTER TEXT (with 3D depth)
    ════════════════════════════════════════ */
 .preloader__text {
   display: flex;
   align-items: baseline;
   gap: 0.15em;
   height: 70px; /* reserve so layout doesn't jump */
+  transform-style: preserve-3d;
 }
 
 .preloader__letter {
@@ -217,6 +320,8 @@
   /* animation paused until parent gets --visible */
   animation: letterDrop 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-play-state: paused;
+  will-change: transform;
+  transition: transform 0.3s ease-out;
 }
 
 .preloader__text--visible .preloader__letter {
@@ -351,6 +456,21 @@
   .preloader__progress {
     width: 150px;
   }
+
+  .preloader__ring--1 {
+    width: 220px;
+    height: 220px;
+  }
+
+  .preloader__ring--2 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .preloader__cursor-dot {
+    width: 6px;
+    height: 6px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -385,5 +505,43 @@
 
   .preloader__progress {
     width: 130px;
+  }
+
+  .preloader__ring--1 {
+    width: 180px;
+    height: 180px;
+  }
+
+  .preloader__ring--2 {
+    width: 240px;
+    height: 240px;
+  }
+
+  .preloader__cursor-dot {
+    width: 5px;
+    height: 5px;
+  }
+}
+
+/* ════════════════════════════════════════
+   TOUCH DEVICE OPTIMIZATION
+   ════════════════════════════════════════ */
+@media (hover: none) and (pointer: coarse) {
+  /* Show normal cursor on touch devices */
+  .preloader {
+    cursor: default;
+  }
+  
+  .preloader__cursor-dot {
+    display: none;
+  }
+
+  /* Disable 3D transforms on touch for better performance */
+  .preloader__content {
+    transform: none !important;
+  }
+
+  .preloader__rings {
+    display: none;
   }
 }

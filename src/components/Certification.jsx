@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Certification.css';
 
 const Certification = () => {
   const [selectedProcess, setSelectedProcess] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const containerRef = useRef(null);
 
   const certificationData = [
     {
@@ -123,6 +126,24 @@ const Certification = () => {
     }
   ];
 
+  // Track mouse movement
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!containerRef.current) return;
+      
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      
+      const x = (clientX / innerWidth - 0.5) * 2;
+      const y = (clientY / innerHeight - 0.5) * 2;
+      
+      setMousePos({ x, y });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   useEffect(() => {
     setIsVisible(true);
   }, []);
@@ -151,8 +172,56 @@ const Certification = () => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isModalOpen]);
 
+  // Get card tilt based on mouse position
+  const getCardTilt = (index) => {
+    if (hoveredCard !== index) return {};
+    
+    return {
+      transform: `perspective(1000px) rotateX(${-mousePos.y * 3}deg) rotateY(${mousePos.x * 3}deg) translateZ(12px)`,
+      transition: 'transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
+    };
+  };
+
+  // Parallax for background elements
+  const getParallaxStyle = (depth = 1) => {
+    return {
+      transform: `translate(${mousePos.x * 8 * depth}px, ${mousePos.y * 8 * depth}px)`,
+      transition: 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
+    };
+  };
+
   return (
-    <section className="certification-container" id="certification">
+    <section className="certification-container" id="certification" ref={containerRef}>
+      {/* Minimalist cursor */}
+      <div 
+        className="certification__cursor"
+        style={{
+          left: `${(mousePos.x + 1) * 50}%`,
+          top: `${(mousePos.y + 1) * 50}%`,
+        }}
+      />
+
+      {/* Subtle grid background */}
+      <div className="certification__grid" style={getParallaxStyle(0.08)}>
+        <div className="certification__grid-overlay"></div>
+      </div>
+
+      {/* Floating minimal elements */}
+      <div className="certification__shapes">
+        <div 
+          className="certification__shape certification__shape--1"
+          style={getParallaxStyle(0.15)}
+        />
+        <div 
+          className="certification__shape certification__shape--2"
+          style={getParallaxStyle(0.2)}
+        />
+        <div 
+          className="certification__shape certification__shape--3"
+          style={getParallaxStyle(0.12)}
+        />
+      </div>
+
       {/* Top Label */}
       <div className="certification-top">
         <div className="certification-top__label">ISO Certification Journey</div>
@@ -163,9 +232,18 @@ const Certification = () => {
         {/* Hero Section */}
         <div className={`certification-hero ${isVisible ? 'visible' : ''}`}>
           <h1 className="certification-hero__title">
-            <span>YOUR PATH TO</span>
-            <span className="highlight">CERTIFICATION</span>
-            <span>SUCCESS</span>
+            <span style={{ transform: `translateX(${mousePos.x * 2}px)`, transition: 'transform 0.4s ease-out' }}>
+              YOUR PATH TO
+            </span>
+            <span 
+              className="highlight"
+              style={{ transform: `translateX(${mousePos.x * 4}px)`, transition: 'transform 0.5s ease-out' }}
+            >
+              CERTIFICATION
+            </span>
+            <span style={{ transform: `translateX(${mousePos.x * 2}px)`, transition: 'transform 0.4s ease-out' }}>
+              SUCCESS
+            </span>
           </h1>
           <p className="certification-hero__excerpt">
             Six strategic steps to achieve and maintain your ISO certification. 
@@ -181,8 +259,16 @@ const Certification = () => {
               key={index} 
               className="certification-card"
               onClick={() => openModal(cert)}
-              style={{ animationDelay: `${index * 0.1}s` }}
+              onMouseEnter={() => setHoveredCard(index)}
+              onMouseLeave={() => setHoveredCard(null)}
+              style={{ 
+                animationDelay: `${index * 0.1}s`,
+                ...getCardTilt(index)
+              }}
             >
+              {/* Hover gradient overlay */}
+              <div className="certification-card__glow"></div>
+
               <div className="certification-card__image">
                 <img src={cert.image} alt={cert.title} loading="lazy" />
                 <div className="certification-card__overlay">
@@ -204,8 +290,8 @@ const Certification = () => {
                   }}
                 >
                   <span>Learn More</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M7 17L17 7M7 7h10v10"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
                 </button>
               </div>
@@ -213,24 +299,27 @@ const Certification = () => {
           ))}
         </div>
 
-        {/* Stats Section */}
+        {/* Stats Section with parallax */}
         <div className="certification-stats">
-          <div className="stat-item">
-            <div className="stat-item__number">150+</div>
-            <div className="stat-item__label">Certified Companies</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-item__number">98%</div>
-            <div className="stat-item__label">Success Rate</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-item__number">25+</div>
-            <div className="stat-item__label">ISO Standards</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-item__number">15</div>
-            <div className="stat-item__label">Years Experience</div>
-          </div>
+          {[
+            { number: "150+", label: "Certified Companies" },
+            { number: "98%", label: "Success Rate" },
+            { number: "25+", label: "ISO Standards" },
+            { number: "15", label: "Years Experience" }
+          ].map((stat, i) => (
+            <div 
+              key={i}
+              className="stat-item"
+              style={{
+                transform: `translateY(${mousePos.y * (1 + i * 0.3)}px)`,
+                transition: 'transform 0.4s ease-out'
+              }}
+            >
+              <div className="stat-item__number">{stat.number}</div>
+              <div className="stat-item__label">{stat.label}</div>
+              <div className="stat-item__accent"></div>
+            </div>
+          ))}
         </div>
 
         {/* CTA Section */}
@@ -244,7 +333,10 @@ const Certification = () => {
             with you every step of the way.
           </p>
           <a href="#contact" className="certification-cta__button">
-            Get Started Today
+            <span>Get Started Today</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </a>
         </div>
       </div>
@@ -273,10 +365,8 @@ const Certification = () => {
                 onClick={closeModal}
                 aria-label="Close modal"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18"/>
-                  <line x1="6" y1="6" x2="18" y2="18"/>
-                </svg>
+                <span className="modal-close-line modal-close-line--1"></span>
+                <span className="modal-close-line modal-close-line--2"></span>
               </button>
             </div>
 
@@ -307,7 +397,10 @@ const Certification = () => {
                 <h4 className="certification-modal__section-title">What We Do</h4>
                 <ul className="certification-modal__list">
                   {selectedProcess.details.map((detail, index) => (
-                    <li key={index}>{detail}</li>
+                    <li key={index}>
+                      <span className="list-dot"></span>
+                      {detail}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -325,8 +418,8 @@ const Certification = () => {
                 className="certification-modal__button certification-modal__button--primary"
                 onClick={() => window.location.href = '#contact'}
               >
-                Get Started
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <span>Get Started</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </button>

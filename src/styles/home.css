@@ -11,8 +11,64 @@
   justify-content: center;
   overflow: hidden;
   font-family: Georgia, serif;
+  cursor: none; /* Hide default cursor */
 }
 
+/* ════════════════════════════════════════
+   CUSTOM CURSOR
+   ════════════════════════════════════════ */
+.hero__cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(49, 74, 213, 0.6);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+  mix-blend-mode: screen;
+}
+
+.hero__cursor::before {
+  content: '';
+  position: absolute;
+  inset: -15px;
+  border: 1px solid rgba(49, 74, 213, 0.3);
+  border-radius: 50%;
+  animation: cursorPulse 2s ease-in-out infinite;
+}
+
+.hero__cursor-inner {
+  position: absolute;
+  inset: -20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: cursorRotate 8s linear infinite;
+  border-top-color: rgba(49, 74, 213, 0.6);
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+}
+
+@keyframes cursorPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes cursorRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ════════════════════════════════════════
+   BACKGROUND VIDEO
+   ════════════════════════════════════════ */
 .hero__background {
   position: absolute;
   top: 0;
@@ -20,6 +76,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  will-change: transform;
 }
 
 .hero__background video {
@@ -41,14 +98,203 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 100%);
+  z-index: 1;
 }
 
+/* ════════════════════════════════════════
+   FLOATING 3D ELEMENTS
+   ════════════════════════════════════════ */
+.hero__floating-elements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero__floating-element {
+  position: absolute;
+  border: 1px solid rgba(49, 74, 213, 0.2);
+  background: rgba(49, 74, 213, 0.05);
+  backdrop-filter: blur(2px);
+  animation: float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero__floating-element--circle {
+  border-radius: 50%;
+}
+
+.hero__floating-element--square {
+  border-radius: 4px;
+  transform-style: preserve-3d;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.6;
+  }
+}
+
+/* ════════════════════════════════════════
+   GRADIENT ORBS (Parallax)
+   ════════════════════════════════════════ */
+.hero__orbs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: orbPulse 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero__orb--1 {
+  top: 20%;
+  left: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(49, 74, 213, 0.6) 0%, transparent 70%);
+  animation-delay: 0s;
+}
+
+.hero__orb--2 {
+  bottom: 15%;
+  right: 10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(91, 127, 255, 0.5) 0%, transparent 70%);
+  animation-delay: 2s;
+}
+
+@keyframes orbPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.25;
+  }
+}
+
+/* ════════════════════════════════════════
+   GRID LINES (Parallax)
+   ════════════════════════════════════════ */
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.08;
+  will-change: transform;
+}
+
+.hero__grid-lines--horizontal,
+.hero__grid-lines--vertical {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__grid-lines--horizontal .hero__grid-line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(49, 74, 213, 0.4) 50%, transparent 100%);
+}
+
+.hero__grid-lines--horizontal .hero__grid-line:nth-child(1) { top: 10%; }
+.hero__grid-lines--horizontal .hero__grid-line:nth-child(2) { top: 20%; }
+.hero__grid-lines--horizontal .hero__grid-line:nth-child(3) { top: 30%; }
+.hero__grid-lines--horizontal .hero__grid-line:nth-child(4) { top: 40%; }
+.hero__grid-lines--horizontal .hero__grid-line:nth-child(5) { top: 60%; }
+.hero__grid-lines--horizontal .hero__grid-line:nth-child(6) { top: 70%; }
+.hero__grid-lines--horizontal .hero__grid-line:nth-child(7) { top: 80%; }
+.hero__grid-lines--horizontal .hero__grid-line:nth-child(8) { top: 90%; }
+
+.hero__grid-lines--vertical .hero__grid-line {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(49, 74, 213, 0.4) 50%, transparent 100%);
+}
+
+.hero__grid-lines--vertical .hero__grid-line:nth-child(1) { left: 8%; }
+.hero__grid-lines--vertical .hero__grid-line:nth-child(2) { left: 16%; }
+.hero__grid-lines--vertical .hero__grid-line:nth-child(3) { left: 24%; }
+.hero__grid-lines--vertical .hero__grid-line:nth-child(4) { left: 32%; }
+.hero__grid-lines--vertical .hero__grid-line:nth-child(5) { left: 40%; }
+.hero__grid-lines--vertical .hero__grid-line:nth-child(6) { left: 60%; }
+.hero__grid-lines--vertical .hero__grid-line:nth-child(7) { left: 68%; }
+.hero__grid-lines--vertical .hero__grid-line:nth-child(8) { left: 76%; }
+.hero__grid-lines--vertical .hero__grid-line:nth-child(9) { left: 84%; }
+.hero__grid-lines--vertical .hero__grid-line:nth-child(10) { left: 92%; }
+
+/* ════════════════════════════════════════
+   3D FLOATING RINGS
+   ════════════════════════════════════════ */
+.hero__rings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__ring {
+  position: absolute;
+  border: 1px solid rgba(49, 74, 213, 0.15);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hero__ring--1 {
+  width: 600px;
+  height: 600px;
+  animation: ringRotate1 20s linear infinite;
+  border-style: solid;
+}
+
+.hero__ring--2 {
+  width: 800px;
+  height: 800px;
+  animation: ringRotate2 25s linear infinite reverse;
+  border-style: dashed;
+  border-width: 2px;
+}
+
+@keyframes ringRotate1 {
+  0% { transform: perspective(1000px) rotateX(60deg) rotateY(0deg); }
+  100% { transform: perspective(1000px) rotateX(60deg) rotateY(360deg); }
+}
+
+@keyframes ringRotate2 {
+  0% { transform: perspective(1000px) rotateX(60deg) rotateY(0deg); }
+  100% { transform: perspective(1000px) rotateX(60deg) rotateY(360deg); }
+}
+
+/* ════════════════════════════════════════
+   CONTENT CONTAINER
+   ════════════════════════════════════════ */
 .hero__container {
   position: relative;
   z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
-  /* padding: 0 2rem; */
   width: 100%;
   display: flex;
   align-items: center;
@@ -63,16 +309,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .hero__title {
   display: flex;
   flex-direction: column;
-  /* gap: 1rem; */
-  /* margin: 0 0 3.5rem 0; */
   align-items: center;
+  transform-style: preserve-3d;
 }
 
+/* ════════════════════════════════════════
+   TITLE WITH 3D LETTER SEPARATION
+   ════════════════════════════════════════ */
 .hero__title-main {
   font-size: 5rem;
   font-weight: 700;
@@ -82,7 +332,37 @@
   animation: heroFadeUp 1s ease 0.2s backwards;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  text-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(49, 74, 213, 0.3);
+  display: inline-flex;
+  gap: 0.1em;
+  transform-style: preserve-3d;
+}
+
+.hero__title-letter {
+  display: inline-block;
+  will-change: transform;
+  text-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(49, 74, 213, 0.4),
+    0 0 60px rgba(49, 74, 213, 0.2);
+  animation: letterFloat 3s ease-in-out infinite;
+}
+
+.hero__title-letter:nth-child(1) { animation-delay: 0s; }
+.hero__title-letter:nth-child(2) { animation-delay: 0.1s; }
+.hero__title-letter:nth-child(3) { animation-delay: 0.2s; }
+.hero__title-letter:nth-child(4) { animation-delay: 0.3s; }
+.hero__title-letter:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes letterFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 .hero__title-accent {
@@ -93,7 +373,10 @@
   animation: heroFadeUp 1s ease 0.3s backwards;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  text-shadow: 
+    0 2px 10px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(49, 74, 213, 0.3);
+  will-change: transform;
 }
 
 .hero__subtitle {
@@ -106,9 +389,14 @@
   text-align: center;
   text-transform: uppercase;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  will-change: transform;
 }
 
+/* ════════════════════════════════════════
+   BUTTON WITH 3D LIFT & SHINE
+   ════════════════════════════════════════ */
 .hero__button {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -127,19 +415,51 @@
   animation: heroFadeUp 1s ease 0.5s backwards;
   border-radius: 4px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hero__button-text {
+  position: relative;
+  z-index: 2;
+}
+
+.hero__button-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.hero__button:hover .hero__button-shine {
+  transform: translateX(100%);
 }
 
 .hero__button:hover {
   background: transparent;
   color: #fff;
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(49, 74, 213, 0.4);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 12px 30px rgba(49, 74, 213, 0.4),
+    0 0 40px rgba(49, 74, 213, 0.3);
 }
 
 .hero__button:active {
-  transform: translateY(-1px);
+  transform: translateY(-1px) scale(0.98);
 }
 
+/* ════════════════════════════════════════
+   SCROLL BUTTON WITH PULSE RING
+   ════════════════════════════════════════ */
 .hero__scroll {
   position: absolute;
   bottom: 3rem;
@@ -158,12 +478,33 @@
   animation: heroFadeUp 1s ease 0.6s backwards, bounce 2s ease-in-out 1s infinite;
   padding: 0;
   z-index: 3;
+  will-change: transform;
+}
+
+.hero__scroll-ring {
+  position: absolute;
+  inset: -8px;
+  border: 2px solid rgba(49, 74, 213, 0.4);
+  border-radius: 50%;
+  animation: scrollRingPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollRingPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
 }
 
 .hero__scroll:hover {
   background: rgba(255, 255, 255, 0.15);
   border-color: #fff;
   animation: heroFadeUp 1s ease 0.6s backwards;
+  box-shadow: 0 0 30px rgba(49, 74, 213, 0.5);
 }
 
 .hero__scroll:active {
@@ -175,6 +516,8 @@
   transition: color 0.3s ease;
   width: 28px;
   height: 28px;
+  position: relative;
+  z-index: 2;
 }
 
 .hero__scroll:hover svg {
@@ -201,8 +544,9 @@
   }
 }
 
-
-
+/* ════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════ */
 @media (max-width: 1024px) {
   .hero__container {
     padding: 0 3rem;
@@ -233,6 +577,16 @@
     bottom: 2.5rem;
     width: 55px;
     height: 55px;
+  }
+
+  .hero__ring--1 {
+    width: 500px;
+    height: 500px;
+  }
+
+  .hero__ring--2 {
+    width: 650px;
+    height: 650px;
   }
 }
 
@@ -277,6 +631,22 @@
   .hero__scroll svg {
     width: 24px;
     height: 24px;
+  }
+
+  .hero__ring--1 {
+    width: 400px;
+    height: 400px;
+  }
+
+  .hero__ring--2 {
+    width: 500px;
+    height: 500px;
+  }
+
+  .hero__orb--1,
+  .hero__orb--2 {
+    width: 300px;
+    height: 300px;
   }
 }
 
@@ -323,5 +693,43 @@
   .hero__scroll svg {
     width: 22px;
     height: 22px;
+  }
+
+  .hero__ring--1 {
+    width: 280px;
+    height: 280px;
+  }
+
+  .hero__ring--2 {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+/* ════════════════════════════════════════
+   TOUCH DEVICE OPTIMIZATION
+   ════════════════════════════════════════ */
+@media (hover: none) and (pointer: coarse) {
+  /* Show normal cursor on touch devices */
+  .hero {
+    cursor: default;
+  }
+  
+  .hero__cursor {
+    display: none;
+  }
+
+  /* Simplify 3D effects for better performance */
+  .hero__content,
+  .hero__button {
+    transform: none !important;
+  }
+
+  .hero__rings {
+    opacity: 0.5;
+  }
+
+  .hero__floating-elements {
+    opacity: 0.6;
   }
 }

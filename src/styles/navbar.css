@@ -9,8 +9,8 @@
 }
 
 .nav__cta-icon.arrow {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-right: 2px solid currentColor;
   border-top: 2px solid currentColor;
   transform: rotate(45deg);
@@ -24,7 +24,7 @@
 }
 
 .nav__container {
-  height: 60px;
+  height: 43px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 3rem;
@@ -34,7 +34,7 @@
   background: transparent;
   backdrop-filter: none;
   border-radius: 75px;
-  padding: 1.2rem 2.5rem;
+  padding: 1rem 2rem;
   box-shadow: none;
   transition: all 0.3s ease;
 }
@@ -425,43 +425,13 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
-  .nav__container {
-    padding: 1rem 2rem;
-  }
-  
-  .nav__menu--desktop {
-    gap: 2.5rem;
-  }
-  
-  .nav__link {
-    font-size: 0.85rem;
-  }
 
-  .nav__right {
-    gap: 1.5rem;
-  }
-
-  .nav__lang-switcher {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.8rem;
-  }
-  
-  .nav__cta {
-    padding: 1rem 1.8rem;
-    font-size: 0.8rem;
-  }
-
-  .nav__logo-img {
-    height: 65px;
-  }
-}
 
 @media (max-width: 900px) {
   .nav__container {
     padding: 0.8rem 1.5rem;
     border-radius: 60px;
-    height: 65px;
+    height: 43px;
   }
   
   /* Hide desktop elements */

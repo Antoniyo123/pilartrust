@@ -3,7 +3,7 @@ import './ServicesPage.css';
 
 const ServicesPage = () => {
   const [activeService, setActiveService] = useState(0);
-  const [activeCategory, setActiveCategory] = useState(0);
+  const [expandedCategory, setExpandedCategory] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -323,6 +323,10 @@ const ServicesPage = () => {
     }
   ];
 
+  const toggleCategory = (index) => {
+    setExpandedCategory(expandedCategory === index ? null : index);
+  };
+
   /* ───────────────────────── RENDER ───────────────────────── */
   return (
     <div className="services-page">
@@ -553,7 +557,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* ── Client Portfolio ── */}
+      {/* ── Client Portfolio (Accordion Style) ── */}
       <section className="svc-clients-area">
         <div className="svc-container">
 
@@ -566,47 +570,50 @@ const ServicesPage = () => {
             </p>
           </div>
 
-          {/* Category Tabs */}
-          <div className="svc-category-nav">
-            {clientCategories.map((cat, idx) => (
-              <button
-                key={idx}
-                className={`svc-category-btn ${activeCategory === idx ? 'is-selected' : ''}`}
-                onClick={() => setActiveCategory(idx)}
+          {/* Accordion List */}
+          <div className="svc-accordion-list">
+            {clientCategories.map((category, index) => (
+              <div 
+                key={index} 
+                className={`svc-accordion-item ${expandedCategory === index ? 'is-expanded' : ''}`}
               >
-                <span className="svc-category-num">{String(idx + 1).padStart(2, '0')}</span>
-                <span className="svc-category-label">{cat.category}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Active Category Display */}
-          <div className="svc-clients-panel">
-            {/* Title bar */}
-            <div className="svc-panel-top">
-              <div className="svc-panel-info">
-                <span className="svc-panel-num">{String(activeCategory + 1).padStart(2, '0')}</span>
-                <div>
-                  <h3 className="svc-panel-heading">{clientCategories[activeCategory].category}</h3>
-                  <p className="svc-panel-count">{clientCategories[activeCategory].clients.length} klien</p>
-                </div>
-              </div>
-              <div className="svc-panel-icon-wrap">
-                {clientCategories[activeCategory].icon}
-              </div>
-            </div>
-
-            {/* Logo grid */}
-            <div className="svc-logos-grid">
-              {clientCategories[activeCategory].clients.map((client, idx) => (
-                <div key={idx} className="svc-logo-tile">
-                  <div className="svc-logo-icon">
-                    <span>{client.charAt(0)}</span>
+                <button 
+                  className="svc-accordion-header"
+                  onClick={() => toggleCategory(index)}
+                >
+                  <div className="svc-accordion-left">
+                    <span className="svc-accordion-num">{String(index + 1).padStart(2, '0')}</span>
+                    <div className="svc-accordion-icon">
+                      {category.icon}
+                    </div>
+                    <div className="svc-accordion-info">
+                      <h3 className="svc-accordion-title">{category.category}</h3>
+                      <span className="svc-accordion-count">{category.clients.length} klien</span>
+                    </div>
                   </div>
-                  <span className="svc-logo-text">{client}</span>
+                  <div className="svc-accordion-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                  </div>
+                </button>
+                
+                <div className="svc-accordion-content">
+                  <div className="svc-accordion-inner">
+                    <div className="svc-clients-grid">
+                      {category.clients.map((client, idx) => (
+                        <div key={idx} className="svc-client-item">
+                          <div className="svc-client-icon">
+                            <span>{client.charAt(0)}</span>
+                          </div>
+                          <span className="svc-client-name">{client}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           {/* Bottom stats strip */}
